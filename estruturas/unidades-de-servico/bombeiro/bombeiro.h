@@ -1,20 +1,15 @@
-#ifndef SAMU_H
-#define SAMU_H
+#ifndef BOMBEIRO_H
+#define BOMBEIRO_H
 
 #include "../../../constantes-sistema/constantes-sistema.h"
 
 #include "../../vetoriais/posicao.h"
 
-
-typedef struct{
-
+typedef struct bombeiro
+{
     char id[MAX_ID];
 
-    int ambulanciasDisponiveis;
-    int ambulanciasAtivas;
-
     Posicao pos;
-}SAMU;
+} Bombeiro;
 
-
-#endif
+#endif // BOMBEIRO_H

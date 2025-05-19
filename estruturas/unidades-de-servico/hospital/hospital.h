@@ -1,16 +1,19 @@
-#ifndef
+#ifndef HOSPITAL_H
+#define HOSPITAL_H
 
-#define "HOSPITAL_H"
+#include "../../../constantes-sistema/constantes-sistema.h"
 
-#define MAX_NOME 30
-#define MAX_ID 10
+#include "../../vetoriais/posicao.h"
+
 
 typedef struct{
 
-    char nome[MAX_NOME];
     char id[MAX_ID];
+    char nome[MAX_NOME];
     int capacidadeMaxima;
     int ocorrenciasAtivas;
+
+    Posicao pos;
 
 }Hospital;
 

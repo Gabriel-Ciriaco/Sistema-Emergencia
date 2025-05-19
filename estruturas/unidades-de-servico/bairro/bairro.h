@@ -1,9 +1,11 @@
-#ifndef
+#ifndef BAIRRO_H
+#define BAIRRO_H
 
-#define "BAIRRO_H"
+#include "../../../constantes-sistema/constantes-sistema.h"
 
-#define MAX_ID 10
-#define MAX_NOME 30
+#include "../../vetoriais/posicao.h"
+
+
 
 typedef struct{
 
@@ -18,6 +20,8 @@ typedef struct{
         Policia policia;
 
     }unidadesServico;
+
+    Posicao pos;
 
 }Bairro;
 

@@ -1,0 +1,10 @@
+#ifndef CONSTANTES-SISTEMA_H
+#define CONSTANTES-SISTEMA_H
+
+
+#define MAX_ID 10
+
+#define MAX_NOME 30
+
+
+#endif // CONSTANTES-SISTEMA_H

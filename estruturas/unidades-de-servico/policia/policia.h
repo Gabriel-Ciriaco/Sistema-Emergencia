@@ -1,20 +1,16 @@
-#ifndef SAMU_H
-#define SAMU_H
+#ifndef POLICIA_H
+#define POLICIA_H
 
 #include "../../../constantes-sistema/constantes-sistema.h"
 
 #include "../../vetoriais/posicao.h"
 
-
-typedef struct{
-
+typedef struct policia
+{
     char id[MAX_ID];
 
-    int ambulanciasDisponiveis;
-    int ambulanciasAtivas;
-
     Posicao pos;
-}SAMU;
 
+} Policia;
 
-#endif
+#endif // POLICIA_H

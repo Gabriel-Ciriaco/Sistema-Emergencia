@@ -5,6 +5,8 @@
 
 #include "../../vetoriais/posicao.h"
 
+#include "../unidadade-de-servico.h"
+
 
 
 typedef struct{
@@ -12,14 +14,7 @@ typedef struct{
     char id[MAX_ID];
     char nome[MAX_NOME];
 
-    typedef union{
-
-        Hospital hospital;
-        SAMU samu;
-        Bombeiro bombeiro;
-        Policia policia;
-
-    }unidadesServico;
+    UnidadeServico unidadeServico;
 
     Posicao pos;
 

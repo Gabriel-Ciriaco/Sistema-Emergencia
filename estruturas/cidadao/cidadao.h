@@ -8,7 +8,7 @@
 
 #define CPF_SIZE 11
 
-#define MAX_EMAIL 50
+#define MAX_TELEFONE 13
 
 typedef struct cidadao
 {
@@ -16,9 +16,11 @@ typedef struct cidadao
 
     char nome[MAX_NOME];
 
+    int idade;
+
     char cpf[CPF_SIZE];
 
-    char email[MAX_EMAIL];
+    char telefoneEmergencia[MAX_TELEFONE];
 
     Bairro * bairro;
 

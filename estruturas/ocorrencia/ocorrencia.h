@@ -2,7 +2,17 @@
 #define OCORRENCIA_H
 
 #include "../../constantes-sistema/constantes-sistema.h"
+
 #include "../vetoriais/posicao.h"
+
+#include "../cidadao/cidadao.h"
+
+
+#include <time.h>
+
+
+#define MAX_DESCRICAO 100
+
 
 typedef enum tipoOcorrencia
 {
@@ -25,6 +35,14 @@ typedef struct ocorrencia
     TipoOcorrencia tipo;
 
     Gravidade gravidade;
+
+    struct tm horaOcorrencia;
+
+    char descricao[MAX_DESCRICAO];
+
+    Cidadao * vitima;
+
+    Cidadao * responsavel; // Responsável pelo acidente (pode ser NULL).
 
 } Ocorrencia;
 

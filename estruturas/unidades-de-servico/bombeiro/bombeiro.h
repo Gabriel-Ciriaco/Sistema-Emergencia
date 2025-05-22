@@ -5,9 +5,15 @@
 
 #include "../../vetoriais/posicao.h"
 
+
+#include <stdbool.h>
+
+
 typedef struct bombeiro
 {
     char id[MAX_ID];
+
+    bool emAtendimento;
 
     Posicao pos;
 } Bombeiro;

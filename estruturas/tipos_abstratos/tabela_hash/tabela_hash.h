@@ -11,7 +11,7 @@
 
 
 #define MAX_TABELA_HASH 100
-#define CHAVE_NULA -1
+#define CHAVE_NULA ""
 
 typedef enum
 {
@@ -42,11 +42,11 @@ typedef struct noHash
 
 typedef tabelaHash
 {
-    NoHash tabela[MAX_TABELA_HASH];
+    NoHash *tabela[MAX_TABELA_HASH];
 
 } TabelaHash;
 
-NoHash criarNo(const char * chave, TipoElementoHash tipo, ValorHash valor);
+NoHash *criarNo(const char * chave, TipoElementoHash tipo, ValorHash valor);
 
 NoHash criarNoVazio();
 

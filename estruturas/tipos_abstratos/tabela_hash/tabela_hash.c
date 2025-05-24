@@ -5,17 +5,22 @@
 #include "tabela_hash.h"
 
 
-NoHash criarNo(const char * chave, TipoElementoHash tipo, ValorHash valor)
+NoHash *criarNo(const char * chave, TipoElementoHash tipo, ValorHash valor)
 {
-    NoHash novoNo;
+    NoHash *novoNo = (NoHash*)malloc(1 *sizeof(NoHash));
 
-    strcpy(novoNo.chave, chave);
+    if(novoNo == NULL)
+    {
+        return NULL;
+    }
 
-    novoNo.tipo = tipo;
+    strcpy(novoNo->chave, chave);
 
-    novoNo.valor = valor;
+    novoNo->tipo = tipo;
 
-    novoNo.prox = NULL;
+    novoNo->valor = valor;
+
+    novoNo->prox = NULL;
 
     return novoNo;
 }
@@ -53,3 +58,85 @@ TabelaHash criarTabelaHash()
 
     return novaTabela;
 }
+
+int funcaoHash(const char * chave)
+{
+    int indice = 0;
+
+    for(int i=0; i<strlen(chave); i++)
+    {
+        indice += i * chave[i];
+    }
+
+    return (indice % MAX_TABELA_HASH);
+}
+
+void inserirValor(TabelaHash * tabelaH, const char * chave, TipoElementoHash tipo, ValorHash valor)
+{
+    int indiceTabela = funcaoHash(chave);
+
+    NoHash *atual = tabelaH[indiceTabela];
+    NoHash *anterior = NULL;
+
+    while(atual != NULL && (strcasecmp(atual->chave, chave) != 0))
+    {
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    if(atual == NULL)
+    {
+        NoHash *novoNo = criarNo(chave, tipo, valor);
+
+        if(novoNo == NULL) //Deu algum erro ao alocar memória.
+        {
+            return;
+        }
+
+        //A posição da tabela está vazia.
+        if(anterior == NULL)
+        {
+            tabelaH[indiceTabela] = novoNo;
+
+        //Houve colisão
+        }else{
+
+            anterior->prox = novoNo;
+        }
+    }
+}
+
+void removerValor(TabelaHash * tabelaH, const char * chave, TipoElementoHash tipo, ValorHash valor)
+{
+    int indiceTabela = funcaoHash(chave);
+
+    NoHash *atual = tabelaH[indiceTabela];
+    NoHash *anterior = NULL;
+
+    while(atual != NULL && (strcasecmp(atual->chave, chave) != 0))
+    {
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    if(atual == NULL) //Nao há nenhum elemento armazenado naquela posicão da tabela ou o elemento não foi encontrado.
+    {
+        return;
+    }
+
+    //Elemento a ser removido foi encontrado.
+
+    if(anterior == NULL) //Ele é logo o primeiro elemento.
+    {
+        tabelaH[indiceTabela] = atual->prox;
+
+    }else{
+
+        anterior->prox = atual->prox;
+    }
+
+    free(atual);
+
+}
+
+

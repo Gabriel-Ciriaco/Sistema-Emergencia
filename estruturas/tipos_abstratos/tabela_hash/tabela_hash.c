@@ -5,7 +5,7 @@
 #include "tabela_hash.h"
 
 
-NoHash *criarNo(const char * chave, TipoElementoHash tipo, ValorHash valor)
+NoHash *criarNo(const char * chave, ValorHash valor)
 {
     NoHash *novoNo = (NoHash*)malloc(1 *sizeof(NoHash));
 
@@ -16,8 +16,6 @@ NoHash *criarNo(const char * chave, TipoElementoHash tipo, ValorHash valor)
 
     strcpy(novoNo->chave, chave);
 
-    novoNo->tipo = tipo;
-
     novoNo->valor = valor;
 
     novoNo->prox = NULL;
@@ -25,35 +23,15 @@ NoHash *criarNo(const char * chave, TipoElementoHash tipo, ValorHash valor)
     return novoNo;
 }
 
-NoHash criarNoVazio()
-{
-    NoHash noVazio;
-
-
-    strcpy(noVazio.chave, CHAVE_NULA);
-
-
-    noVazio.tipo = ELEMENTO_HASH_NULO;
-
-    /*
-        Como o valor é uma union, qualquer campo
-        que limparmos, deixará a union vazia.
-    */
-    noVazio.valor.bairro = NULL;
-
-    noVazio.prox = NULL;
-
-
-    return noVazio;
-}
-
-TabelaHash criarTabelaHash()
+TabelaHash criarTabelaHash(TipoElementoHash tipo)
 {
     TabelaHash novaTabela;
 
+    novaTabela.tipo = tipo;
+
     for (int i = 0; i < MAX_TABELA_HASH; i++)
     {
-        novaTabela.tabela[i] = criarNoVazio();
+        novaTabela.tabela[i] = NULL;
     }
 
     return novaTabela;
@@ -71,7 +49,7 @@ int funcaoHash(const char * chave)
     return (indice % MAX_TABELA_HASH);
 }
 
-void inserirValor(TabelaHash * tabelaH, const char * chave, TipoElementoHash tipo, ValorHash valor)
+void inserirValor(TabelaHash * tabelaH, const char * chave, ValorHash valor)
 {
     int indiceTabela = funcaoHash(chave);
 
@@ -86,7 +64,7 @@ void inserirValor(TabelaHash * tabelaH, const char * chave, TipoElementoHash tip
 
     if(atual == NULL)
     {
-        NoHash *novoNo = criarNo(chave, tipo, valor);
+        NoHash *novoNo = criarNo(chave, valor);
 
         if(novoNo == NULL) //Deu algum erro ao alocar memória.
         {
@@ -106,7 +84,7 @@ void inserirValor(TabelaHash * tabelaH, const char * chave, TipoElementoHash tip
     }
 }
 
-void removerValor(TabelaHash * tabelaH, const char * chave, TipoElementoHash tipo, ValorHash valor)
+void removerValor(TabelaHash * tabelaH, const char * chave, ValorHash valor)
 {
     int indiceTabela = funcaoHash(chave);
 
@@ -139,4 +117,16 @@ void removerValor(TabelaHash * tabelaH, const char * chave, TipoElementoHash tip
 
 }
 
+void limparTabela(TabelaHash * tabelaH)
+{
+    for (int i = 0; i < MAX_TABELA_HASH; i++)
+    {
+        NoHash * elemento = tabelaH.tabela[i];
 
+        removerValor(tabelaH, elemento->chave, elemento->valor);
+
+        free(elemento);
+
+        tabelaH.tabela[i] = NULL;
+    }
+}

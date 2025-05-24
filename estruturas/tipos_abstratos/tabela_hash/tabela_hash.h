@@ -15,7 +15,6 @@
 
 typedef enum
 {
-    ELEMENTO_HASH_NULO,
     BAIRRO,
     CIDADAO,
     UNIDADE_SERVICO,
@@ -32,8 +31,6 @@ typedef struct noHash
 {
     char chave[MAX_ID];
 
-    TipoElementoHash tipo;
-
     ValorHash valor;
 
     struct noHash * prox;
@@ -42,15 +39,15 @@ typedef struct noHash
 
 typedef tabelaHash
 {
+    TipoElementoHash tipo;
+
     NoHash *tabela[MAX_TABELA_HASH];
 
 } TabelaHash;
 
-NoHash *criarNo(const char * chave, TipoElementoHash tipo, ValorHash valor);
+NoHash *criarNo(const char * chave, ValorHash valor);
 
-NoHash criarNoVazio();
-
-TabelaHash criarTabelaHash();
+TabelaHash criarTabelaHash(TipoElementoHash tipo);
 
 int funcaoHash(const char * chave);
 
@@ -61,6 +58,7 @@ void inserirValor(TabelaHash * tabelaH,
 
 void removerValor(TabelaHash * tabelaH,
                   const char * chave,
-                  TipoElementoHash tipo,
                   ValorHash valor);
+
+void limparTabela(TabelaHash * tabelaH);
 #endif // TABELA_HASH_H

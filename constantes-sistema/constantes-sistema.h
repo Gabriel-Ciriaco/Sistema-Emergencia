@@ -6,5 +6,13 @@
 
 #define MAX_NOME 30
 
+#define MAX_RAND_ID 1000
+
+#define MAX_RAND_POS 100
+
+#define MAX_DISPONIVEIS 20
+
+#define MAX_ATIVAS 20
+
 
 #endif // CONSTANTES-SISTEMA_H

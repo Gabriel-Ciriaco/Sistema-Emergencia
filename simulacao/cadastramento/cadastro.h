@@ -10,14 +10,14 @@
 #include "../../estruturas/unidades-de-servico/samu/samu.h"
 
 
-Bairro cadastrarBairro(TabelaHash * bairros, Bairro bairro);
+Bairro cadastrarBairro(TabelaHash * bairros, Bairro * bairro);
 
-Bombeiro cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro);
+Bombeiro cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro * bombeiro);
 
-Hospital cadastrarHospital(TabelaHash * hospitais, Hospital hospital);
+Hospital cadastrarHospital(TabelaHash * hospitais, Hospital * hospital);
 
-Policia cadastrarPolicia(TabelaHash * policias, Policia policia);
+Policia cadastrarPolicia(TabelaHash * policias, Policia * policia);
 
-SAMU cadastrarSAMU(TabelaHash * samus, SAMU samu);
+SAMU cadastrarSAMU(TabelaHash * samus, SAMU * samu);
 
 #endif // CADASTRO_H

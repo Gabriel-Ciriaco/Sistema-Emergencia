@@ -1,5 +1,5 @@
-#include "../../../geradores/geradores.h"
-#include "../../../constantes-sistema/constantes-sistema.h"
+#include "geradores.h"
+#include "../../constantes-sistema/constantes-sistema.h"
 
 #include<string.h>
 #include<stdlib.h>

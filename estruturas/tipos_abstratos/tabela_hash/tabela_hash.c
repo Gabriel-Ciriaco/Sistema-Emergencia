@@ -1,8 +1,9 @@
+#include "tabela_hash.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "tabela_hash.h"
 
 
 NoHash *criarNo(const char * chave, ValorHash valor)

@@ -4,6 +4,7 @@
 #include "../../estruturas/tipos_abstratos/tabela_hash/tabela_hash.h"
 
 #include "../../estruturas/bairro/bairro.h"
+#include "../../estruturas/cidadao/cidadao.h"
 
 #include "../../estruturas/unidades-de-servico/bombeiro/bombeiro.h"
 #include "../../estruturas/unidades-de-servico/hospital/hospital.h"
@@ -13,12 +14,14 @@
 
 Bairro cadastrarBairro(TabelaHash * bairros, Bairro * bairro);
 
-Bombeiro cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro * bombeiro);
+Cidadao cadastrarCidadao(TabelaHash * cidadaos, Cidadao * cidadao);
 
-Hospital cadastrarHospital(TabelaHash * hospitais, Hospital * hospital);
+Bombeiro cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro);
 
-Policia cadastrarPolicia(TabelaHash * policias, Policia * policia);
+Hospital cadastrarHospital(TabelaHash * hospitais, Hospital hospital);
 
-SAMU cadastrarSAMU(TabelaHash * samus, SAMU * samu);
+Policia cadastrarPolicia(TabelaHash * policias, Policia policia);
+
+SAMU cadastrarSAMU(TabelaHash * samus, SAMU samu);
 
 #endif // CADASTRO_H

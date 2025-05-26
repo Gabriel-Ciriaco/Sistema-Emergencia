@@ -123,7 +123,7 @@ void limparTabela(TabelaHash * tabelaH)
     {
         NoHash * elemento = tabelaH->tabela[i];
 
-        removerValor(tabelaH, elemento->chave, elemento->valor);
+        removerValorTabela(tabelaH, elemento->chave, elemento->valor);
 
         free(elemento);
 

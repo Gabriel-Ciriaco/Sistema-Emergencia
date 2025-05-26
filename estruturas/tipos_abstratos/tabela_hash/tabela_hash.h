@@ -51,13 +51,13 @@ TabelaHash criarTabelaHash(TipoElementoHash tipo);
 
 int funcaoHash(const char * chave);
 
-void inserirValor(TabelaHash * tabelaH,
-                  const char * chave,
-                  ValorHash valor);
+void inserirValorTabela(TabelaHash * tabelaH,
+                        const char * chave,
+                        ValorHash valor);
 
-void removerValor(TabelaHash * tabelaH,
-                  const char * chave,
-                  ValorHash valor);
+void removerValorTabela(TabelaHash * tabelaH,
+                        const char * chave,
+                        ValorHash valor);
 
 void limparTabela(TabelaHash * tabelaH);
 

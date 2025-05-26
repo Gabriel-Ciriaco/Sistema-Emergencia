@@ -5,7 +5,6 @@
 #include <string.h>
 
 
-
 NoHash *criarNo(const char * chave, ValorHash valor)
 {
     NoHash *novoNo = (NoHash*)malloc(1 *sizeof(NoHash));
@@ -50,7 +49,7 @@ int funcaoHash(const char * chave)
     return (indice % MAX_TABELA_HASH);
 }
 
-void inserirValor(TabelaHash * tabelaH, const char * chave, ValorHash valor)
+void inserirValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valor)
 {
     int indiceTabela = funcaoHash(chave);
 
@@ -85,7 +84,7 @@ void inserirValor(TabelaHash * tabelaH, const char * chave, ValorHash valor)
     }
 }
 
-void removerValor(TabelaHash * tabelaH, const char * chave, ValorHash valor)
+void removerValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valor)
 {
     int indiceTabela = funcaoHash(chave);
 

@@ -13,8 +13,6 @@ Bairro gerarBairro(const char * nome, UnidadeServico unidadeServico)
 
     sprintf(novoBairro.id, "BA%d", rand() % MAX_RAND_ID);
 
-    novoBairro.unidadeServico = unidadeServico;
-
     novoBairro.pos.x = rand() % MAX_RAND_POS;
 
     novoBairro.pos.y = rand() % MAX_RAND_POS;

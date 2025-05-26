@@ -1,13 +1,13 @@
 #ifndef TABELA_HASH_H
 #define TABELA_HASH_H
 
-#include "../../../../constantes-sistema/constantes-sistema.h"
+#include "../../../constantes-sistema/constantes-sistema.h"
 
 #include "../../bairro/bairro.h"
 
-#include "../../../cidadao/cidadao.h"
+#include "../../cidadao/cidadao.h"
 
-#include "../../unidadade-de-servico.h"
+#include "../../unidades-de-servico/unidadade-de-servico.h"
 
 
 #define MAX_TABELA_HASH 100
@@ -37,7 +37,7 @@ typedef struct noHash
 } NoHash;
 
 
-typedef tabelaHash
+typedef struct tabelaHash
 {
     TipoElementoHash tipo;
 

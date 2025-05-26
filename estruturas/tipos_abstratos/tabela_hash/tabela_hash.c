@@ -53,7 +53,7 @@ void inserirValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valo
 {
     int indiceTabela = funcaoHash(chave);
 
-    NoHash *atual = tabelaH[indiceTabela];
+    NoHash *atual = tabelaH->tabela[indiceTabela];
     NoHash *anterior = NULL;
 
     while(atual != NULL && (strcasecmp(atual->chave, chave) != 0))
@@ -74,7 +74,7 @@ void inserirValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valo
         //A posição da tabela está vazia.
         if(anterior == NULL)
         {
-            tabelaH[indiceTabela] = novoNo;
+            tabelaH->tabela[indiceTabela] = novoNo;
 
         //Houve colisão
         }else{
@@ -88,7 +88,7 @@ void removerValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valo
 {
     int indiceTabela = funcaoHash(chave);
 
-    NoHash *atual = tabelaH[indiceTabela];
+    NoHash *atual = tabelaH->tabela[indiceTabela];
     NoHash *anterior = NULL;
 
     while(atual != NULL && (strcasecmp(atual->chave, chave) != 0))
@@ -106,7 +106,7 @@ void removerValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valo
 
     if(anterior == NULL) //Ele é logo o primeiro elemento.
     {
-        tabelaH[indiceTabela] = atual->prox;
+        tabelaH->tabela[indiceTabela] = atual->prox;
 
     }else{
 
@@ -121,12 +121,12 @@ void limparTabela(TabelaHash * tabelaH)
 {
     for (int i = 0; i < MAX_TABELA_HASH; i++)
     {
-        NoHash * elemento = tabelaH.tabela[i];
+        NoHash * elemento = tabelaH->tabela[i];
 
         removerValor(tabelaH, elemento->chave, elemento->valor);
 
         free(elemento);
 
-        tabelaH.tabela[i] = NULL;
+        tabelaH->tabela[i] = NULL;
     }
 }

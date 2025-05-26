@@ -3,7 +3,8 @@
 
 #include "../../estruturas/tipos_abstratos/tabela_hash/tabela_hash.h"
 
-#include "../../estruturas/unidades-de-servico/bairro/bairro.h"
+#include "../../estruturas/bairro/bairro.h"
+
 #include "../../estruturas/unidades-de-servico/bombeiro/bombeiro.h"
 #include "../../estruturas/unidades-de-servico/hospital/hospital.h"
 #include "../../estruturas/unidades-de-servico/policia/policia.h"

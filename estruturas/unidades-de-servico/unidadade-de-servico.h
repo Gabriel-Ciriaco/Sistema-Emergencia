@@ -11,7 +11,7 @@ typedef union unidadeServico
     Bombeiro bombeiro;
     Hospital hospital;
     Policia policia;
-    Samu samu;
+    SAMU samu;
 } UnidadeServico;
 
 

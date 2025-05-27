@@ -15,9 +15,9 @@
 
 typedef enum
 {
-    BAIRRO,
-    CIDADAO,
-    UNIDADE_SERVICO,
+    HASH_BAIRRO,
+    HASH_CIDADAO,
+    HASH_UNIDADE_SERVICO,
 } TipoElementoHash;
 
 typedef union valorHash

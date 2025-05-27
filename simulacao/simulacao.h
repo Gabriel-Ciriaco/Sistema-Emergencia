@@ -40,6 +40,8 @@ typedef struct simulador
 
     int tempoSimulacao; // O tempo de simulação em segundos.
 
+    int tempoSimulacaoMaximo;
+
 
     int quantidadeBairros;
 
@@ -78,7 +80,7 @@ Simulador criarSimulador();
 
 bool rodarSimulacao(Simulador * simulador);
 
-bool alterarTempoSimulacao(Simulador * simulador, int novoTempo);
+bool alterarTempoSimulacao(Simulador * simulador, int novoTempoMaximo);
 
 bool alterarQuantidadeEntidade(Simulador * simulador,
                                TipoEntidadeSimulador entidade,

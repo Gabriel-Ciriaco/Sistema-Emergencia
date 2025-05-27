@@ -15,6 +15,8 @@ Simulador criarSimulador()
 
     novoSimulador.tempoSimulacao = 0;
 
+    novoSimulador.tempoSimulacaoMaximo = MAX_TEMPO_SIMULACAO;
+
 
     /* Inicialização das quantidades */
     novoSimulador.quantidadeBairros = QTD_BAIRROS;
@@ -46,9 +48,9 @@ bool rodarSimulacao(Simulador * simulador)
 
     strftime(simulador->inicioSimulacao, FORMATO_TEMPO, "%H:%M:%S", &horaAtual);
 
-    printf("\n** [%s]: Simulação iniciada **\n", simulador->inicioSimulacao);
+    printf("\n[%s]: ** Simulação iniciada **\n", simulador->inicioSimulacao);
 
-    while (simulador->tempoSimulacao < MAX_TEMPO_SIMULACAO)
+    while (simulador->tempoSimulacao < simulador->tempoSimulacaoMaximo)
     {
         time_t t = time(NULL);
 
@@ -57,7 +59,10 @@ bool rodarSimulacao(Simulador * simulador)
 
         strftime(simulador->tempoAtualSimulacao, FORMATO_TEMPO, "%H:%M:%S", &horaAtual);
 
-        printf("\n** [%s]: Simulando... **\n", simulador->tempoAtualSimulacao);
+        printf("\n[%s]: ** Simulando... **\n", simulador->tempoAtualSimulacao);
+        /*
+            TO-DO: Adicionar a simulação em si.
+        */
 
         simulador->tempoSimulacao++;
 
@@ -71,7 +76,7 @@ bool alterarTempoSimulacao(Simulador * simulador, int novoTempo)
 {
     if (novoTempo < 0) return false;
 
-    simulador->tempoSimulacao = novoTempo;
+    simulador->tempoSimulacaoMaximo = novoTempo;
 
     return true;
 }

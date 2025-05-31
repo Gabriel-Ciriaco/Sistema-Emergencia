@@ -10,6 +10,7 @@
 
 #define MAX_TELEFONE 13
 
+
 typedef struct cidadao
 {
     char id[MAX_ID];

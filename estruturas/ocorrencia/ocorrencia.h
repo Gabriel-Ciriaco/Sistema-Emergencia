@@ -16,16 +16,16 @@
 
 typedef enum tipoOcorrencia
 {
-    BOMBEIRO,
-    POLICIA,
-    HOSPITAL,
+    OCORRENCIA_BOMBEIRO,
+    OCORRENCIA_POLICIA,
+    OCORRENCIA_HOSPITAL,
 } TipoOcorrencia;
 
 typedef enum gravidade
 {
-    BAIXA,
-    MEDIA,
-    ALTA,
+    GRAVIDADE_BAIXA,
+    GRAVIDADE_MEDIA,
+    GRAVIDADE_ALTA,
 } Gravidade;
 
 typedef struct ocorrencia

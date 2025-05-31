@@ -48,6 +48,11 @@ bool rodarSimulacao(Simulador * simulador)
 
     strftime(simulador->inicioSimulacao, FORMATO_TEMPO, "%H:%M:%S", &horaAtual);
 
+    /*
+        Inicializa uma seed para os eventos aleatórios.
+    */
+    srand(t);
+
     printf("\n[%s]: ** Simulação iniciada **\n", simulador->inicioSimulacao);
 
     while (simulador->tempoSimulacao < simulador->tempoSimulacaoMaximo)
@@ -60,9 +65,16 @@ bool rodarSimulacao(Simulador * simulador)
         strftime(simulador->tempoAtualSimulacao, FORMATO_TEMPO, "%H:%M:%S", &horaAtual);
 
         printf("\n[%s]: ** Simulando... **\n", simulador->tempoAtualSimulacao);
+
         /*
             TO-DO: Adicionar a simulação em si.
         */
+
+        char nome[MAX_NOME];
+
+        nomeCidadaoAleatorio(nome);
+
+        printf("\n** Nome aleatório: %s**\n", nome);
 
         simulador->tempoSimulacao++;
 

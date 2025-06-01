@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 
 Simulador criarSimulador()
@@ -57,7 +58,6 @@ bool rodarSimulacao(Simulador * simulador)
 
     printf("\n[%s]: ** Simulação iniciada **\n", simulador->inicioSimulacao);
 
-    char * cidadoIdTeste[MAX_ID];
     while (simulador->tempoSimulacao < simulador->tempoSimulacaoMaximo)
     {
         time_t t = time(NULL);
@@ -67,20 +67,15 @@ bool rodarSimulacao(Simulador * simulador)
         strftime(simulador->tempoAtualSimulacao, FORMATO_TEMPO, "%H:%M:%S", &horaAtual);
 
         printf("\n[%s]: ** Simulando **\n", simulador->tempoAtualSimulacao);
+
         /*
             TO-DO: Adicionar a simulação em si.
         */
-        Cidadao teste = gerarCidadao();
-
-        strcpy(cidadoIdTeste, teste.id);
-        cadastrarCidadao(&(simulador->cidadaos), teste);
 
         simulador->tempoSimulacao++;
 
         sleep(1); // Espera 1 segundo.
     }
-
-    Cidadao * aaa = resgatarCadastroCidadao(simulador->cidadaos, cidadoIdTeste);
 
     return limparSimulacao(simulador);
 }

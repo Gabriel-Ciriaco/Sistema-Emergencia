@@ -3,6 +3,8 @@
 
 #include "../../constantes-sistema/constantes-sistema.h"
 
+#include "../bairro/bairro.h"
+
 #include "../vetoriais/posicao.h"
 
 

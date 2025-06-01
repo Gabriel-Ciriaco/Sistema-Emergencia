@@ -5,7 +5,7 @@
 #include <string.h>
 
 
-NoHash *criarNo(const char * chave, ValorHash valor)
+NoHash *criarNoHash(const char * chave, ValorHash valor)
 {
     NoHash *novoNo = (NoHash*)malloc(1 *sizeof(NoHash));
 
@@ -64,7 +64,7 @@ void inserirValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valo
 
     if(atual == NULL)
     {
-        NoHash *novoNo = criarNo(chave, valor);
+        NoHash *novoNo = criarNoHash(chave, valor);
 
         if(novoNo == NULL) //Deu algum erro ao alocar memória.
         {

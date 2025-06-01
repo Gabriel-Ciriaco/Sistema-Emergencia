@@ -45,7 +45,7 @@ typedef struct tabelaHash
 
 } TabelaHash;
 
-NoHash *criarNo(const char * chave, ValorHash valor);
+NoHash *criarNoHash(const char * chave, ValorHash valor);
 
 TabelaHash criarTabelaHash(TipoElementoHash tipo);
 

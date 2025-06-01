@@ -10,6 +10,9 @@
 
 #include <time.h>
 
+#define NUM_TIPOS_OCORRENCIA 3
+
+#define NUM_GRAVIDADES 3
 
 #define MAX_DESCRICAO 100
 
@@ -17,8 +20,8 @@
 typedef enum tipoOcorrencia
 {
     OCORRENCIA_BOMBEIRO,
-    OCORRENCIA_POLICIA,
     OCORRENCIA_HOSPITAL,
+    OCORRENCIA_POLICIA,
 } TipoOcorrencia;
 
 typedef enum gravidade

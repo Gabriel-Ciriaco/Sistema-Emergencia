@@ -1,0 +1,100 @@
+Dor de cabeça leve.0
+Febre persistente.1
+Fratura exposta de perna.2
+Tontura e náuseas.1
+Parada cardíaca.2
+Cortes superficiais.0
+Dor abdominal intensa.1
+Acidente vascular cerebral.2
+Reação alérgica leve.0
+Queimadura de segundo grau.1
+Dor no peito.1
+Convulsões.2
+Picada de inseto com inchaço.0
+Hemorragia nasal.1
+Trauma craniano.2
+Desidratação moderada.1
+Intoxicação alimentar.1
+Parada respiratória.2
+Torção de tornozelo.0
+Sangramento grave.2
+Dor nas costas persistente.1
+Crise de asma severa.2
+Ferimento por arma branca.2
+Infecção urinária.1
+Queimadura química extensa.2
+Vertigem.1
+Fratura múltipla.2
+Reação alérgica grave.2
+Dor de ouvido.0
+Parto emergencial.2
+Insolação.1
+Ferimento por arma de fogo.2
+Diarreia persistente.1
+Coma diabético.2
+Picada de animal peçonhento.1
+Afogamento.2
+Dor de garganta.0
+Hemorrhagia interna.2
+Envenenamento.2
+Fratura de coluna.2
+Pressão alta.1
+Choque anafilático.2
+Queimadura de terceiro grau.2
+Desmaio.1
+Trauma torácico.2
+Infarto.2
+Sangramento pós-cirúrgico.1
+Sepse.2
+Dor muscular.0
+Embolia pulmonar.2
+Reação medicamentosa.1
+Politraumatismo.2
+Conjuntivite.0
+Crise de pânico.1
+Amputação traumática.2
+Pneumonia grave.2
+Alucinações.1
+Queimadura elétrica.2
+Dengue hemorrágica.2
+Hipotermia severa.2
+Nariz entupido.0
+Pancreatite aguda.2
+Fratura de crânio.2
+Meningite.2
+Luxação de ombro.1
+Insuficiência renal.2
+Picada de abelha múltipla.1
+Embolia gasosa.2
+Dor pélvica.1
+Encefalite.2
+Espasmos musculares.0
+Hemorragia digestiva.2
+Queimadura solar.0
+Trombose venosa profunda.2
+Crise hipertensiva.1
+Paralisia facial.1
+Trauma abdominal.2
+Asfixia.2
+Infecção generalizada.2
+Arritmia cardíaca.1
+Resfriado comum.0
+Icterícia.1
+Fratura de quadril.2
+Eclampsia.2
+Dor de dente.0
+Embolia cerebral.2
+Queimadura por radiação.2
+Desnutrição severa.2
+Sinusite.0
+Gangrena.2
+Anafilaxia.2
+Perda de visão súbita.2
+Dor nas articulações.0
+Insuficiência hepática.2
+Crise convulsiva prolongada.2
+Ferimento perfurante.2
+Alergia cutânea.0
+Tromboembolismo pulmonar.2
+Coma etílico.1
+Queimadura extensa por líquido quente.2

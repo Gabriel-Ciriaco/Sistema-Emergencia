@@ -77,15 +77,56 @@ bool rodarSimulacao(Simulador * simulador)
        }
        else
        {
-           printf("\n[%s]\nCidadao aleatório: ", simulador->tempoAtualSimulacao);
+           printf("\n[%s]\n** Cidadao aleatório **", simulador->tempoAtualSimulacao);
 
            printf("\n-ID: %s\n-Nome: %s\n-Idade: %d\n-CPF: %s\n-TELEFONE: %s\n",
                   teste.id, teste.nome, teste.idade, teste.cpf, teste.telefoneEmergencia);
        }
 
-        simulador->tempoSimulacao++;
+       /*
+        TO-DO: Apagar tudo que está aqui.
 
-        sleep(1); // Espera 1 segundo.
+        Este é um teste para a geração aleatória de ocorrências.
+       */
+       Ocorrencia ocorrenciaTeste = gerarOcorrencia(horaAtual, NULL, NULL);
+
+       printf("\n** Nova Ocorrência **");
+
+       switch(ocorrenciaTeste.tipo)
+       {
+           case OCORRENCIA_BOMBEIRO:
+               printf("\n-Tipo de Ocorrência: Bombeiro");
+           break;
+
+           case OCORRENCIA_HOSPITAL:
+               printf("\n-Tipo de Ocorrência: Hospital");
+           break;
+
+           case OCORRENCIA_POLICIA:
+               printf("\n-Tipo de Ocorrência: Polícia");
+           break;
+       }
+
+       switch(ocorrenciaTeste.gravidade)
+       {
+           case GRAVIDADE_BAIXA:
+               printf("\n-Gravidade da Ocorrência: Baixa");
+           break;
+
+           case GRAVIDADE_MEDIA:
+               printf("\n-Gravidade da Ocorrência: Média");
+           break;
+
+           case GRAVIDADE_ALTA:
+               printf("\n-Gravidade da Ocorrência: Alta");
+           break;
+       }
+
+       printf("\n-Descrição da Ocorrência: %s\n\n", ocorrenciaTeste.descricao);
+
+       simulador->tempoSimulacao++;
+
+       sleep(1); // Espera 1 segundo.
     }
 
     return true;

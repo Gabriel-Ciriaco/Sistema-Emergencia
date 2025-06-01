@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 
 Bairro gerarBairro(const char * nome, UnidadeServico unidadeServico)
 {
@@ -86,6 +87,52 @@ Cidadao gerarCidadao()
 
 }
 
+Ocorrencia gerarOcorrencia(struct tm horaOcorrencia,
+                           Cidadao * vitima,
+                           Cidadao * responsavel)
+{
+    Ocorrencia novaOcorrencia;
+
+    sprintf(novaOcorrencia.id, "OR%d", rand() % MAX_RAND_ID);
+
+    novaOcorrencia.tipo = rand() % NUM_TIPOS_OCORRENCIA;
+
+    novaOcorrencia.horaOcorrencia = horaOcorrencia;
+
+    novaOcorrencia.vitima = vitima;
+
+    novaOcorrencia.responsavel = responsavel;
+
+    switch(novaOcorrencia.tipo)
+    {
+        case OCORRENCIA_BOMBEIRO:
+            textoAleatorio(&novaOcorrencia.descricao, OCORRENCIAS_BOMBEIRO_PATH);
+        break;
+
+        case OCORRENCIA_HOSPITAL:
+            textoAleatorio(&novaOcorrencia.descricao, OCORRENCIAS_HOSPITAL_PATH);
+        break;
+
+        case OCORRENCIA_POLICIA:
+            textoAleatorio(&novaOcorrencia.descricao, OCORRENCIAS_POLICIA_PATH);
+        break;
+    }
+
+    int tamanhoDescricao = strlen(novaOcorrencia.descricao);
+
+    /*
+        A gravidade da ocorrência é armazenada no final da descrição.
+
+        Assim, como pode ser um valor de 0-3, subtraímos '0' do caracter
+        que é o número da gravidade e o convertemos para int.
+    */
+    novaOcorrencia.gravidade = (int) novaOcorrencia.descricao[tamanhoDescricao - 1] - '0';
+
+    // Retiramos o valor da gravidade da ocorrência da descrição.
+    novaOcorrencia.descricao[tamanhoDescricao - 1] = '\0';
+
+    return novaOcorrencia;
+}
 
 Bombeiro gerarBombeiro()
 {

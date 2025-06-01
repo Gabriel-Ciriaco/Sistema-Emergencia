@@ -1,0 +1,100 @@
+Pequeno incêndio em lixeira.0
+Fumaça saindo de um edifício residencial.1
+Vazamento de gás em residência.1
+Incêndio em veículo.2
+Pessoas presas em elevador.1
+Incêndio florestal de pequenas proporções.1
+Resgate de animal em árvore.0
+Incêndio em fábrica com vítimas.2
+Vazamento de produto químico.1
+Queimadura em cozinha industrial.1
+Princípio de incêndio em apartamento.1
+Socorro a vítima de afogamento.2
+Incêndio em depósito de materiais.1
+Resgate em altura.1
+Incêndio em veículo com vítimas presas.2
+Vazamento de gás em restaurante.1
+Limpeza de área com risco de queda.0
+Incêndio em escola.2
+Salvamento em enchente.2
+Incêndio em posto de gasolina.2
+Resgate em colapso estrutural.2
+Fogo em vegetação próxima a residências.1
+Socorro a vítima de queimaduras graves.2
+Incêndio em hospital.2
+Vazamento em tanque industrial.1
+Incêndio em centro comercial.2
+Resgate em acidente de trânsito.2
+Incêndio em navio.2
+Salvamento em deslizamento.2
+Incêndio em aeronave.2
+Pequeno incêndio em área rural.0
+Fumaça em sistema de ventilação.1
+Incêndio em teatro.2
+Resgate em mina.2
+Incêndio em laboratório químico.2
+Socorro a vítima de explosão.2
+Incêndio em estação de trem.2
+Salvamento em tempestade.1
+Incêndio em museu.2
+Resgate em construção desabando.2
+Incêndio em igreja.1
+Vazamento em duto subterrâneo.1
+Incêndio em cinema.2
+Socorro a vítima de choque elétrico.2
+Incêndio em prédio histórico.2
+Resgate em caverna.2
+Incêndio em estádio esportivo.2
+Salvamento em terremoto.2
+Incêndio em universidade.2
+Vazamento em refinaria.2
+Pequeno incêndio em barracão.0
+Fumaça em garagem subterrânea.1
+Incêndio em asilo.2
+Resgate em ponte.2
+Incêndio em hotel.2
+Socorro a vítima de inalação de fumaça.1
+Incêndio em boate.2
+Salvamento em furacão.2
+Incêndio em presídio.2
+Resgate em túnel.2
+Incêndio em shopping center.2
+Vazamento em usina nuclear.2
+Socorro a vítima de queda de altura.2
+Incêndio em aeroporto.2
+Resgate em barco afundando.2
+Incêndio em depósito de pneus.1
+Salvamento em avalanche.2
+Incêndio em biblioteca.1
+Socorro a vítima de esmagamento.2
+Incêndio em estúdio de TV.1
+Resgate em poço.2
+Incêndio em galpão industrial.1
+Vazamento em plataforma petrolífera.2
+Socorro a vítima de hipotermia.1
+Incêndio em zoológico.1
+Salvamento em tsunami.2
+Incêndio em parque temático.2
+Resgate em edifício em colapso.2
+Incêndio em clube noturno.2
+Socorro a vítima de envenenamento.1
+Pequeno incêndio em churrasqueira.0
+Fumaça em sistema elétrico.1
+Incêndio em casa de shows.2
+Resgate em ferrovia.2
+Incêndio em terminal rodoviário.1
+Socorro a vítima de trauma grave.2
+Incêndio em centro de convenções.1
+Salvamento em erupção vulcânica.2
+Incêndio em estádio olímpico.2
+Resgate em mina subterrânea.2
+Incêndio em cassino.2
+Vazamento em fábrica de produtos químicos.2
+Socorro a vítima de queimaduras extensas.2
+Incêndio em centro de pesquisa.1
+Salvamento em tornado.2
+Incêndio em palácio.1
+Resgate em barragem rompida.2
+Incêndio em monumento histórico.1
+Socorro a vítima de acidente industrial.2
+Incêndio em usina termelétrica.2

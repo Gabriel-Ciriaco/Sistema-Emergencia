@@ -9,7 +9,6 @@
 
 Bairro gerarBairro(const char * nome, UnidadeServico unidadeServico)
 {
-
     Bairro novoBairro;
 
     strcpy(novoBairro.nome, nome);
@@ -25,6 +24,8 @@ Bairro gerarBairro(const char * nome, UnidadeServico unidadeServico)
 
 int quantidadeNomesDisponiveis(char * NOMES_PATH)
 {
+    if (NOMES_PATH == NULL) return -1;
+
     FILE * lista_nomes = fopen(NOMES_PATH, "r");
 
     if (!lista_nomes) return -1;
@@ -115,11 +116,63 @@ void nomeCidadaoAleatorio(char * nome)
 
 }
 
+void cpfAleatorio(char * cpf)
+{
+    const int QTD_NUM_CPF = 11;
+
+    int cpfNumeros[QTD_NUM_CPF];
+
+    for (int i = 0; i < QTD_NUM_CPF; i++)
+    {
+        cpfNumeros[i] = rand() % 10;
+    }
+
+    sprintf(cpf, "%d%d%d.%d%d%d.%d%d%d-%d%d",
+            cpfNumeros[0], cpfNumeros[1], cpfNumeros[2],
+            cpfNumeros[3], cpfNumeros[4], cpfNumeros[5],
+            cpfNumeros[6], cpfNumeros[7], cpfNumeros[8],
+            cpfNumeros[9], cpfNumeros[10]);
+
+    cpf[CPF_SIZE - 1] = '\0'; // Garantia que a string finalizou corretamente.
+}
+
+void telefoneAleatorio(char * telefone)
+{
+    // DDD entre 10 e 90. Escolha arbitrária.
+    int DDD = rand() % 90 + 10;
+
+    const int QUANTIDADE_DIGITOS = 9;
+
+    int numero[QUANTIDADE_DIGITOS];
+
+    numero[0] = 9; // Primeiro dígito é sempre nove.
+
+    for (int i = 1; i < QUANTIDADE_DIGITOS; i++)
+    {
+        numero[i] = rand() % 10;
+    }
+
+    sprintf(telefone, "(%02d) %d%d%d%d%d%d%d%d%d",
+            DDD,
+            numero[0], numero[1], numero[2], numero[3], numero[4],
+            numero[5], numero[6], numero[7], numero[8]);
+
+    telefone[MAX_TELEFONE - 1] = '\0'; // Garantia que a string finalizou corretamente.
+}
+
 Cidadao gerarCidadao()
 {
     Cidadao novoCidadao;
 
     nomeCidadaoAleatorio(&novoCidadao.nome);
+
+    sprintf(novoCidadao.id, "CD%d", rand() % MAX_RAND_ID);
+
+    novoCidadao.idade = rand() % RAND_IDADE;
+
+    cpfAleatorio(novoCidadao.cpf);
+
+    telefoneAleatorio(novoCidadao.telefoneEmergencia);
 
     return novoCidadao;
 

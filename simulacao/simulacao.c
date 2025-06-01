@@ -1,4 +1,5 @@
 #include "simulacao.h"
+#include "./geradores/geradores.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,7 +52,7 @@ bool rodarSimulacao(Simulador * simulador)
     /*
         Inicializa uma seed para os eventos aleatórios.
     */
-    srand(t);
+    srand(time(NULL));
 
     printf("\n[%s]: ** Simulação iniciada **\n", simulador->inicioSimulacao);
 
@@ -64,17 +65,17 @@ bool rodarSimulacao(Simulador * simulador)
 
         strftime(simulador->tempoAtualSimulacao, FORMATO_TEMPO, "%H:%M:%S", &horaAtual);
 
-        printf("\n[%s]: ** Simulando... **\n", simulador->tempoAtualSimulacao);
-
         /*
             TO-DO: Adicionar a simulação em si.
         */
 
-        char nome[MAX_NOME];
+       Cidadao teste = gerarCidadao();
 
-        nomeCidadaoAleatorio(nome);
 
-        printf("\n** Nome aleatório: %s**\n", nome);
+        printf("\n[%s]\nCidadao aleatório: ", simulador->tempoAtualSimulacao);
+
+        printf("\n-ID: %s\n-Nome: %s\n-Idade: %d\n-CPF: %s\n-TELEFONE: %s\n",
+               teste.id, teste.nome, teste.idade, teste.cpf, teste.telefoneEmergencia);
 
         simulador->tempoSimulacao++;
 

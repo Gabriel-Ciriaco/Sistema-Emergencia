@@ -6,9 +6,9 @@
 #include "../vetoriais/posicao.h"
 
 
-#define CPF_SIZE 11
+#define CPF_SIZE 15
 
-#define MAX_TELEFONE 13
+#define MAX_TELEFONE 15
 
 
 typedef struct cidadao

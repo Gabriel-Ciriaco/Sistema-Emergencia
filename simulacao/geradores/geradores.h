@@ -14,6 +14,8 @@
 // Alterar o path de acordo com onde a função gerarCidadao for executada!
 #define NOMES_CIDADAO_PATH "./estruturas/cidadao/nomes_cidadao.txt"
 
+#define RAND_IDADE 80
+
 Bairro gerarBairro(const char * nome, UnidadeServico unidadeServico);
 
 Cidadao gerarCidadao();

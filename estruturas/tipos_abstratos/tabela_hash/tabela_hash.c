@@ -62,6 +62,7 @@ void inserirValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valo
         atual = atual->prox;
     }
 
+
     if(atual == NULL)
     {
         NoHash *novoNo = criarNo(chave, valor);
@@ -82,9 +83,10 @@ void inserirValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valo
             anterior->prox = novoNo;
         }
     }
+
 }
 
-void removerValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valor)
+void removerValorTabela(TabelaHash * tabelaH, const char * chave)
 {
     int indiceTabela = funcaoHash(chave);
 
@@ -117,13 +119,32 @@ void removerValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valo
 
 }
 
+ValorHash * buscaValorTabela(TabelaHash * tabelaH, const char * chave)
+{
+    int indiceTabela = funcaoHash(chave);
+
+    NoHash *atual = tabelaH->tabela[indiceTabela];
+
+    while (atual != NULL)
+    {
+        if (strcasecmp(atual->chave, chave) == 0)
+        {
+            return &(atual->valor);
+        }
+
+        atual = atual->prox;
+    }
+
+    return NULL;
+}
+
 void limparTabela(TabelaHash * tabelaH)
 {
     for (int i = 0; i < MAX_TABELA_HASH; i++)
     {
         NoHash * elemento = tabelaH->tabela[i];
 
-        removerValorTabela(tabelaH, elemento->chave, elemento->valor);
+        removerValorTabela(tabelaH, elemento->chave);
 
         free(elemento);
 

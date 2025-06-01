@@ -22,9 +22,9 @@ typedef enum
 
 typedef union valorHash
 {
-    Bairro * bairro;
-    Cidadao * cidadao;
-    UnidadeServico * unidadeServico;
+    Bairro bairro;
+    Cidadao cidadao;
+    UnidadeServico unidadeServico;
 } ValorHash;
 
 typedef struct noHash
@@ -56,8 +56,10 @@ void inserirValorTabela(TabelaHash * tabelaH,
                         ValorHash valor);
 
 void removerValorTabela(TabelaHash * tabelaH,
-                        const char * chave,
-                        ValorHash valor);
+                        const char * chave);
+
+ValorHash * buscaValorTabela(TabelaHash * tabelaH,
+                             const char * chave);
 
 void limparTabela(TabelaHash * tabelaH);
 

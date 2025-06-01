@@ -71,11 +71,17 @@ bool rodarSimulacao(Simulador * simulador)
 
        Cidadao teste = gerarCidadao();
 
+       if (strcasecmp(teste.nome, "") == 0)
+       {
+           printf("\n** Não foi possível gerar um cidadão! **\n");
+       }
+       else
+       {
+           printf("\n[%s]\nCidadao aleatório: ", simulador->tempoAtualSimulacao);
 
-        printf("\n[%s]\nCidadao aleatório: ", simulador->tempoAtualSimulacao);
-
-        printf("\n-ID: %s\n-Nome: %s\n-Idade: %d\n-CPF: %s\n-TELEFONE: %s\n",
-               teste.id, teste.nome, teste.idade, teste.cpf, teste.telefoneEmergencia);
+           printf("\n-ID: %s\n-Nome: %s\n-Idade: %d\n-CPF: %s\n-TELEFONE: %s\n",
+                  teste.id, teste.nome, teste.idade, teste.cpf, teste.telefoneEmergencia);
+       }
 
         simulador->tempoSimulacao++;
 

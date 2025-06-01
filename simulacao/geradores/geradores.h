@@ -11,7 +11,7 @@
 #include "../../estruturas/unidades-de-servico/policia/policia.h"
 #include "../../estruturas/unidades-de-servico/samu/samu.h"
 
-// Alterar o path de acordo com onde a função gerarCidadao for executada!
+// Alterar o PATH de acordo com onde a função gerarCidadao for executada!
 #define NOMES_CIDADAO_PATH "./estruturas/cidadao/nomes_cidadao.txt"
 
 #define RAND_IDADE 80

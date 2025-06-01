@@ -12,16 +12,39 @@
 #include "../../estruturas/unidades-de-servico/samu/samu.h"
 
 
-Bairro cadastrarBairro(TabelaHash * bairros, Bairro * bairro);
+void cadastrarBairro(TabelaHash * bairros, Bairro bairro);
 
-Cidadao cadastrarCidadao(TabelaHash * cidadaos, Cidadao * cidadao);
+Bairro * resgatarCadastroBairro(TabelaHash * bairros,
+                                const char * bairroId);
 
-Bombeiro cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro);
 
-Hospital cadastrarHospital(TabelaHash * hospitais, Hospital hospital);
+void cadastrarCidadao(TabelaHash * cidadaos, Cidadao cidadao);
 
-Policia cadastrarPolicia(TabelaHash * policias, Policia policia);
+Cidadao * resgatarCadastroCidadao(TabelaHash * cidadaos,
+                                  const char * cidadaoId);
 
-SAMU cadastrarSAMU(TabelaHash * samus, SAMU samu);
+
+void cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro);
+
+Bombeiro * resgatarCadastroBombeiro(TabelaHash * bombeiros,
+                                    const char * bombeiroId);
+
+
+void cadastrarHospital(TabelaHash * hospitais, Hospital hospital);
+
+Hospital * resgatarCadastroHospital(TabelaHash * hospitais,
+                                    const char * hospitalId);
+
+
+void cadastrarPolicia(TabelaHash * policias, Policia policia);
+
+Policia * resgatarCadastroPolicia(TabelaHash * policias,
+                                  const char * policiaId);
+
+
+void cadastrarSAMU(TabelaHash * samus, SAMU samu);
+
+SAMU * resgatarCadastroSAMU(TabelaHash * samus,
+                            const char * samuId);
 
 #endif // CADASTRO_H

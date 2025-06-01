@@ -86,4 +86,6 @@ bool alterarQuantidadeEntidade(Simulador * simulador,
                                TipoEntidadeSimulador entidade,
                                int novaQuantidade);
 
+bool limparSimulacao(Simulador * simulador);
+
 #endif // SIMULACAO_H

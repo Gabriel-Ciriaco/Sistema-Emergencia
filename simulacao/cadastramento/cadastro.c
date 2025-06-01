@@ -1,55 +1,112 @@
 #include "cadastro.h"
 
-Bairro cadastrarBairro(TabelaHash * bairros, Bairro * bairro)
+#include <stdlib.h>
+
+void cadastrarBairro(TabelaHash * bairros, Bairro bairro)
 {
     ValorHash valor;
 
     valor.bairro = bairro;
 
-    inserirValorTabela(bairros, bairro->id, valor);
+    inserirValorTabela(bairros, bairro.id, valor);
 }
 
-Cidadao cadastrarCidadao(TabelaHash * cidadaos, Cidadao * cidadao)
+Bairro * resgatarCadastroBairro(TabelaHash * bairros,
+                                const char * bairroId)
 {
-    Cidadao novoCidadao;
+   ValorHash * valor = buscaValorTabela(bairros, bairroId);
 
-    //TO-DO: Terminar a implementação do novo cidadão.
+   if (!valor) return NULL;
 
-    return novoCidadao;
+   return &(valor->bairro);
 }
 
-Bombeiro cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro)
+void cadastrarCidadao(TabelaHash * cidadaos, Cidadao cidadao)
 {
     ValorHash valor;
 
-    valor.unidadeServico->bombeiro = bombeiro;
+    valor.cidadao = cidadao;
+
+    inserirValorTabela(cidadaos, cidadao.id, valor);
+}
+
+Cidadao * resgatarCadastroCidadao(TabelaHash * cidadaos, const char * cidadaoId)
+{
+    ValorHash * valor = buscaValorTabela(cidadaos, cidadaoId);
+
+    if (!valor) return NULL;
+
+    return &(valor->cidadao);
+}
+
+void cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro)
+{
+    ValorHash valor;
+
+    valor.unidadeServico.bombeiro = bombeiro;
 
     inserirValorTabela(bombeiros, bombeiro.id, valor);
 }
 
-Hospital cadastrarHospital(TabelaHash * hospitais, Hospital hospital)
+Bombeiro * resgatarCadastroBombeiro(TabelaHash * bombeiros, const char * bombeiroId)
+{
+    ValorHash * valor = buscaValorTabela(bombeiros, bombeiroId);
+
+    if (!valor) return NULL;
+
+    return &(valor->unidadeServico.bombeiro);
+}
+
+void cadastrarHospital(TabelaHash * hospitais, Hospital hospital)
 {
     ValorHash valor;
 
-    valor.unidadeServico->hospital = hospital;
+    valor.unidadeServico.hospital = hospital;
 
     inserirValorTabela(hospitais, hospital.id, valor);
 }
 
-Policia cadastrarPolicia(TabelaHash * policias, Policia policia)
+Hospital * resgatarCadastroHospital(TabelaHash * hospitais, const char * hospitalId)
+{
+    ValorHash * valor = buscaValorTabela(hospitais, hospitalId);
+
+    if (!valor) return NULL;
+
+    return &(valor->unidadeServico.hospital);
+}
+
+void cadastrarPolicia(TabelaHash * policias, Policia policia)
 {
     ValorHash valor;
 
-    valor.unidadeServico->policia = policia;
+    valor.unidadeServico.policia = policia;
 
     inserirValorTabela(policias, policia.id, valor);
 }
 
-SAMU cadastrarSAMU(TabelaHash * samus, SAMU samu)
+Policia * resgatarCadastroPolicia(TabelaHash * policias, const char * policiaId)
+{
+    ValorHash * valor = buscaValorTabela(policias, policiaId);
+
+    if (!valor) return NULL;
+
+    return &(valor->unidadeServico.policia);
+}
+
+void cadastrarSAMU(TabelaHash * samus, SAMU samu)
 {
     ValorHash valor;
 
-    valor.unidadeServico->samu = samu;
+    valor.unidadeServico.samu = samu;
 
     inserirValorTabela(samus, samu.id, valor);
+}
+
+SAMU * resgatarCadastroSAMU(TabelaHash * samus, const char * samuId)
+{
+    ValorHash * valor = buscaValorTabela(samus, samuId);
+
+    if (!valor) return NULL;
+
+    return &(valor->unidadeServico.samu);
 }

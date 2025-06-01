@@ -39,6 +39,7 @@ Simulador criarSimulador()
 
     novoSimulador.unidadesServico = criarTabelaHash(HASH_UNIDADE_SERVICO);
 
+    return novoSimulador;
 }
 
 bool rodarSimulacao(Simulador * simulador)
@@ -56,80 +57,32 @@ bool rodarSimulacao(Simulador * simulador)
 
     printf("\n[%s]: ** Simulação iniciada **\n", simulador->inicioSimulacao);
 
+    char * cidadoIdTeste[MAX_ID];
     while (simulador->tempoSimulacao < simulador->tempoSimulacaoMaximo)
     {
         time_t t = time(NULL);
 
         struct tm horaAtual = *localtime(&t);
 
-
         strftime(simulador->tempoAtualSimulacao, FORMATO_TEMPO, "%H:%M:%S", &horaAtual);
 
+        printf("\n[%s]: ** Simulando **\n", simulador->tempoAtualSimulacao);
         /*
             TO-DO: Adicionar a simulação em si.
         */
+        Cidadao teste = gerarCidadao();
 
-       Cidadao teste = gerarCidadao();
+        strcpy(cidadoIdTeste, teste.id);
+        cadastrarCidadao(&(simulador->cidadaos), teste);
 
-       if (strcasecmp(teste.nome, "") == 0)
-       {
-           printf("\n** Não foi possível gerar um cidadão! **\n");
-       }
-       else
-       {
-           printf("\n[%s]\n** Cidadao aleatório **", simulador->tempoAtualSimulacao);
+        simulador->tempoSimulacao++;
 
-           printf("\n-ID: %s\n-Nome: %s\n-Idade: %d\n-CPF: %s\n-TELEFONE: %s\n",
-                  teste.id, teste.nome, teste.idade, teste.cpf, teste.telefoneEmergencia);
-       }
-
-       /*
-        TO-DO: Apagar tudo que está aqui.
-
-        Este é um teste para a geração aleatória de ocorrências.
-       */
-       Ocorrencia ocorrenciaTeste = gerarOcorrencia(horaAtual, NULL, NULL);
-
-       printf("\n** Nova Ocorrência **");
-
-       switch(ocorrenciaTeste.tipo)
-       {
-           case OCORRENCIA_BOMBEIRO:
-               printf("\n-Tipo de Ocorrência: Bombeiro");
-           break;
-
-           case OCORRENCIA_HOSPITAL:
-               printf("\n-Tipo de Ocorrência: Hospital");
-           break;
-
-           case OCORRENCIA_POLICIA:
-               printf("\n-Tipo de Ocorrência: Polícia");
-           break;
-       }
-
-       switch(ocorrenciaTeste.gravidade)
-       {
-           case GRAVIDADE_BAIXA:
-               printf("\n-Gravidade da Ocorrência: Baixa");
-           break;
-
-           case GRAVIDADE_MEDIA:
-               printf("\n-Gravidade da Ocorrência: Média");
-           break;
-
-           case GRAVIDADE_ALTA:
-               printf("\n-Gravidade da Ocorrência: Alta");
-           break;
-       }
-
-       printf("\n-Descrição da Ocorrência: %s\n\n", ocorrenciaTeste.descricao);
-
-       simulador->tempoSimulacao++;
-
-       sleep(1); // Espera 1 segundo.
+        sleep(1); // Espera 1 segundo.
     }
 
-    return true;
+    Cidadao * aaa = resgatarCadastroCidadao(simulador->cidadaos, cidadoIdTeste);
+
+    return limparSimulacao(simulador);
 }
 
 bool alterarTempoSimulacao(Simulador * simulador, int novoTempo)
@@ -176,4 +129,13 @@ bool alterarQuantidadeEntidade(Simulador * simulador,
         default:
             return false;
     }
+}
+
+bool limparSimulacao(Simulador * simulador)
+{
+    limparTabela(&(simulador->bairros));
+    limparTabela(&(simulador->cidadaos));
+    limparTabela(&(simulador->unidadesServico));
+
+    return true;
 }

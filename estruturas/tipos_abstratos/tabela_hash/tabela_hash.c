@@ -62,7 +62,6 @@ void inserirValorTabela(TabelaHash * tabelaH, const char * chave, ValorHash valo
         atual = atual->prox;
     }
 
-
     if(atual == NULL)
     {
         NoHash *novoNo = criarNo(chave, valor);
@@ -144,9 +143,10 @@ void limparTabela(TabelaHash * tabelaH)
     {
         NoHash * elemento = tabelaH->tabela[i];
 
-        removerValorTabela(tabelaH, elemento->chave);
-
-        free(elemento);
+        if (elemento)
+        {
+            removerValorTabela(tabelaH, elemento->chave);
+        }
 
         tabelaH->tabela[i] = NULL;
     }

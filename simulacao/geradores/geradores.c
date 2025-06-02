@@ -14,7 +14,7 @@ Bairro gerarBairro()
 {
     Bairro novoBairro;
 
-    textoAleatorio(&novoBairro.nome, NOMES_BAIRRO_PATH);
+    textoAleatorio(novoBairro.nome, NOMES_BAIRRO_PATH);
 
     sprintf(novoBairro.id, "BA%d", rand() % MAX_RAND_ID);
 
@@ -73,7 +73,7 @@ Cidadao gerarCidadao()
 {
     Cidadao novoCidadao;
 
-    textoAleatorio(&novoCidadao.nome, NOMES_CIDADAO_PATH);
+    textoAleatorio(novoCidadao.nome, NOMES_CIDADAO_PATH);
 
     sprintf(novoCidadao.id, "CD%d", rand() % MAX_RAND_ID);
 
@@ -106,18 +106,18 @@ Ocorrencia gerarOcorrencia(char * horaOcorrencia,
     switch(novaOcorrencia.tipo)
     {
         case OCORRENCIA_BOMBEIRO:
-            textoAleatorio(&novaOcorrencia.descricao, OCORRENCIAS_BOMBEIRO_PATH);
+            textoAleatorio(novaOcorrencia.descricao, OCORRENCIAS_BOMBEIRO_PATH);
         break;
 
         case OCORRENCIA_HOSPITAL:
-            textoAleatorio(&novaOcorrencia.descricao, OCORRENCIAS_HOSPITAL_PATH);
+            textoAleatorio(novaOcorrencia.descricao, OCORRENCIAS_HOSPITAL_PATH);
         break;
 
         case OCORRENCIA_POLICIA:
 
             novaOcorrencia.responsavel = responsavel;
 
-            textoAleatorio(&novaOcorrencia.descricao, OCORRENCIAS_POLICIA_PATH);
+            textoAleatorio(novaOcorrencia.descricao, OCORRENCIAS_POLICIA_PATH);
         break;
     }
 
@@ -164,7 +164,7 @@ Hospital gerarHospital(const char * nome)
 {
     Hospital novoHospital;
 
-    strcmp(novoHospital.nome, nome);
+    strcpy(novoHospital.nome, nome);
 
     sprintf(novoHospital.id, "HO%d", rand() % MAX_RAND_ID);
 

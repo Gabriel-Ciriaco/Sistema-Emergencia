@@ -1,10 +1,10 @@
 #include "simulacao/simulacao.h"
+#include "./simulacao/geradores/geradores.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
 
-#include "./simulacao/geradores/geradores.h"
 
 int main()
 {
@@ -12,7 +12,9 @@ int main()
 
     Simulador simulador = criarSimulador();
 
-    alterarTempoSimulacao(&simulador, 2);
+    alterarTempoMaximoSimulacao(&simulador, 10);
+
+    printf("\n** Simulação Iniciada **\n");
 
     if (rodarSimulacao(&simulador))
     {

@@ -59,26 +59,16 @@ Simulador criarSimulador()
 
 bool rodarSimulacao(Simulador * simulador)
 {
-    time_t t = time(NULL);
-
-    struct tm horaAtual = *localtime(&t);
-
-    strftime(simulador->inicioSimulacao, FORMATO_TEMPO, "%H:%M:%S", &horaAtual);
+    calcularTempoAtual(simulador->inicioSimulacao);
 
     /*
         Inicializa uma seed para os eventos aleatórios.
     */
     srand(time(NULL));
 
-    printf("\n[%s]: ** Simulação iniciada **\n", simulador->inicioSimulacao);
-
     while (simulador->tempoSimulacao < simulador->tempoSimulacaoMaximo)
     {
-        time_t t = time(NULL);
-
-        struct tm horaAtual = *localtime(&t);
-
-        strftime(simulador->tempoAtualSimulacao, FORMATO_TEMPO, "%H:%M:%S", &horaAtual);
+        calcularTempoAtual(simulador->tempoAtualSimulacao);
 
         printf("\n[%s]: ** Simulando **\n", simulador->tempoAtualSimulacao);
 
@@ -94,7 +84,7 @@ bool rodarSimulacao(Simulador * simulador)
     return limparSimulacao(simulador);
 }
 
-bool alterarTempoSimulacao(Simulador * simulador, int novoTempo)
+bool alterarTempoMaximoSimulacao(Simulador * simulador, int novoTempo)
 {
     if (novoTempo < 0) return false;
 

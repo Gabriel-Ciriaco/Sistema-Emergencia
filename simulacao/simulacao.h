@@ -1,13 +1,13 @@
 #ifndef SIMULACAO_H
 #define SIMULACAO_H
 
+#include "./controle-de-tempo/controle-de-tempo.h"
+
 #include "../estruturas/tipos_abstratos/tabela_hash/tabela_hash.h"
 #include "../estruturas/tipos_abstratos/fila_prioridade/fila_prioridade.h"
 
 #include <stdbool.h>
 #include <time.h>
-
-#define FORMATO_TEMPO 9
 
 #define MAX_TEMPO_SIMULACAO 100
 
@@ -100,7 +100,7 @@ Simulador criarSimulador();
 
 bool rodarSimulacao(Simulador * simulador);
 
-bool alterarTempoSimulacao(Simulador * simulador, int novoTempoMaximo);
+bool alterarTempoMaximoSimulacao(Simulador * simulador, int novoTempoMaximo);
 
 bool alterarQuantidadeEntidade(Simulador * simulador,
                                TipoEntidadeSimulador entidade,

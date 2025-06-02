@@ -1,5 +1,6 @@
 #include "simulacao.h"
 #include "./geradores/geradores.h"
+#include "./cadastramento/cadastro.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -95,12 +96,34 @@ bool rodarSimulacao(Simulador * simulador)
                 Ocorrencia novaOcorrencia = gerarOcorrencia(simulador->tempoAtualSimulacao,
                                                             vitimaTabela, responsavelTabela);
 
-                printf("\n[%s]: Nova ocorrência: %s\nDescrição: %s\nVítima: %s\nResponsável: %s\n",
+                printf("\n[%s]: Nova ocorrência: %s\n-Descrição: %s\n-Vítima: %s\n",
                         simulador->tempoAtualSimulacao,
                         novaOcorrencia.id,
                         novaOcorrencia.descricao,
-                        novaOcorrencia.vitima->nome,
-                        novaOcorrencia.responsavel->nome);
+                        novaOcorrencia.vitima->nome);
+
+                if (novaOcorrencia.responsavel)
+                {
+                    printf("-Responsável: %s\n", novaOcorrencia.responsavel->nome);
+                }
+
+                switch(novaOcorrencia.gravidade)
+                {
+                    case GRAVIDADE_BAIXA:
+                        printf("-Gravidade: Baixa\n");
+
+                        break;
+
+                    case GRAVIDADE_MEDIA:
+                        printf("-Gravidade: Média\n");
+
+                        break;
+
+                    case GRAVIDADE_ALTA:
+                        printf("-Gravidade: Alta\n");
+
+                        break;
+                }
 
                 ValorFilaPrioridade valor;
 
@@ -125,7 +148,7 @@ bool rodarSimulacao(Simulador * simulador)
         }
 
 
-        while(!estaVaziaFilaP(&(simulador->filaAtendimento)))
+        if(!estaVaziaFilaP(&(simulador->filaAtendimento)))
         {
             ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaAtendimento));
 
@@ -146,6 +169,10 @@ bool rodarSimulacao(Simulador * simulador)
                     {
                         inserirValorFilaPFim(&(simulador->filaBombeiro), valor);
                     }
+
+                    printf("\n[%s]: Ocorrência adicionada à fila de atendimento dos bombeiros: %s\n",
+                           simulador->tempoAtualSimulacao,
+                           valor.ocorrencia.id);
                     break;
 
                 case OCORRENCIA_HOSPITAL:
@@ -159,6 +186,12 @@ bool rodarSimulacao(Simulador * simulador)
                         inserirValorFilaPFim(&(simulador->filaHospital), valor);
                     }
 
+                    printf("\n[%s]: Ocorrência adicionada à fila de atendimento do hospital: %s\n",
+                           simulador->tempoAtualSimulacao,
+                           valor.ocorrencia.id);
+
+                    break;
+
                 case OCORRENCIA_POLICIA:
 
                     if(valor.ocorrencia.gravidade == GRAVIDADE_MEDIA || valor.ocorrencia.gravidade == GRAVIDADE_ALTA)
@@ -170,10 +203,16 @@ bool rodarSimulacao(Simulador * simulador)
                         inserirValorFilaPFim(&(simulador->filaPolicia), valor);
                     }
 
+                    printf("\n[%s]: Ocorrência adicionada à fila de atendimento da polícia: %s\n",
+                           simulador->tempoAtualSimulacao,
+                           valor.ocorrencia.id);
+
+                    break;
+
             }
         }
 
-        while(!estaVaziaFilaP(&(simulador->filaBombeiro)))
+        if(!estaVaziaFilaP(&(simulador->filaBombeiro)))
         {
             ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaBombeiro));
 
@@ -187,7 +226,7 @@ bool rodarSimulacao(Simulador * simulador)
             */
         }
 
-        while(!estaVaziaFilaP(&(simulador->filaHospital)))
+        if(!estaVaziaFilaP(&(simulador->filaHospital)))
         {
             ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaHospital));
 
@@ -202,7 +241,7 @@ bool rodarSimulacao(Simulador * simulador)
 
         }
 
-        while(!estaVaziaFilaP(&(simulador->filaPolicia)))
+        if(!estaVaziaFilaP(&(simulador->filaPolicia)))
         {
             ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaPolicia));
 

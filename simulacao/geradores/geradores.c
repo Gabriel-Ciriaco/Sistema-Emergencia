@@ -101,7 +101,7 @@ Ocorrencia gerarOcorrencia(char * horaOcorrencia,
 
     novaOcorrencia.vitima = vitima;
 
-    novaOcorrencia.responsavel = responsavel;
+    novaOcorrencia.responsavel = NULL; // Só será alterada se for caso de polícia.
 
     switch(novaOcorrencia.tipo)
     {
@@ -114,6 +114,9 @@ Ocorrencia gerarOcorrencia(char * horaOcorrencia,
         break;
 
         case OCORRENCIA_POLICIA:
+
+            novaOcorrencia.responsavel = responsavel;
+
             textoAleatorio(&novaOcorrencia.descricao, OCORRENCIAS_POLICIA_PATH);
         break;
     }

@@ -5,6 +5,7 @@
 
 #include "../../unidades-de-servico/unidadade-de-servico.h"
 
+#include<stdbool.h>
 
 typedef union valorFilaPrioridade
 {
@@ -37,13 +38,17 @@ NoFilaPrioridade * criarNoFilaPrioridade(ValorFilaPrioridade valor);
 
 FilaPrioridade criarFilaPrioridade();
 
-void inserirValorFilaP(FilaPrioridade * filaP,
+bool estaVaziaFilaP(FilaPrioridade *filaP);
+
+void inserirValorFilaPInicio(FilaPrioridade * filaP,
                        ValorFilaPrioridade valor);
 
-ValorFilaPrioridade removerValorFilaPInicio(FilaPrioridade * filaP);
+void inserirValorFilaPFim(FilaPrioridade * filaP,
+                          ValorFilaPrioridade valor);
 
-ValorFilaPrioridade removerValorFilaPFim(FilaPrioridade * filaP);
+ValorFilaPrioridade removerValorFilaP(FilaPrioridade * filaP);
 
 void limparFilaPrioridade(FilaPrioridade * filaP);
+
 
 #endif // FILA_PRIORIDADE_H

@@ -106,6 +106,8 @@ bool rodarSimulacao(Simulador * simulador);
 
 bool alterarTempoMaximoSimulacao(Simulador * simulador, int novoTempoMaximo);
 
+bool alterarQuantidadeOcorrenciasCiclo(Simulador *simulador, int novaQtd);
+
 bool alterarQuantidadeEntidade(Simulador * simulador,
                                TipoEntidadeSimulador entidade,
                                int novaQuantidade);

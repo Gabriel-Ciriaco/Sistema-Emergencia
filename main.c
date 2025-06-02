@@ -14,6 +14,8 @@ int main()
 
     alterarTempoMaximoSimulacao(&simulador, 30);
 
+    alterarQuantidadeOcorrenciasCiclo(&simulador, 5);
+
     printf("\n** Simulação Iniciada **\n");
 
     if (rodarSimulacao(&simulador))

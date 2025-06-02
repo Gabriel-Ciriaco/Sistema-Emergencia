@@ -273,6 +273,15 @@ bool alterarTempoMaximoSimulacao(Simulador * simulador, int novoTempo)
     return true;
 }
 
+bool alterarQuantidadeOcorrenciasCiclo(Simulador *simulador, int novaQtd)
+{
+    if(novaQtd <= 0) return false;
+
+    simulador->qtdMaximaOcorrenciasPorCiclo = novaQtd;
+
+    return true;
+}
+
 bool alterarQuantidadeEntidade(Simulador * simulador,
                                TipoEntidadeSimulador entidade,
                                int novaQuantidade)

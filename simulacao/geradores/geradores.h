@@ -15,9 +15,10 @@
 
 #include <time.h>
 
-#define NOMES_BAIRRO_PATH "./estruturas/bairro/nomes_bairro.txt"
 
 // Alterar o PATH de acordo com onde a função de geração for executada!
+#define NOMES_BAIRRO_PATH "./estruturas/bairro/nomes_bairro.txt"
+
 #define NOMES_CIDADAO_PATH "./estruturas/cidadao/nomes_cidadao.txt"
 
 #define OCORRENCIAS_BOMBEIRO_PATH "./estruturas/ocorrencia/ocorrencias_bombeiro.txt"

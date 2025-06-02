@@ -72,9 +72,55 @@ bool rodarSimulacao(Simulador * simulador)
 
         printf("\n[%s]: ** Simulando **\n", simulador->tempoAtualSimulacao);
 
-        /*
-            TO-DO: Adicionar a simulação em si.
-        */
+        if(simulador->tempoSimulacao % simulador->tempoChegadaOcorrencia == 0)
+        {
+            Cidadao vitima = gerarCidadao();
+            Cidadao responsavel = gerarCidadao();
+
+            cadastrarCidadao(&(simulador->cidadaos), vitima);
+            cadastrarCidadao(&(simulador->cidadaos), responsavel);
+
+            Cidadao * vitimaTabela = resgatarCadastroCidadao(&(simulador->cidadaos), vitima.id);
+            Cidadao * responsavelTabela = resgatarCadastroCidadao(&(simulador->cidadaos), responsavel.id);
+
+            Ocorrencia novaOcorrencia = gerarOcorrencia(simulador->tempoAtualSimulacao, vitimaTabela, responsavelTabela);
+
+            printf("\n[%s]: Nova ocorrência: %s\nVítima: %s\nResponsável: %s\n",
+                   simulador->tempoAtualSimulacao,
+                   novaOcorrencia.descricao,
+                   novaOcorrencia.vitima->nome,
+                   novaOcorrencia.responsavel->nome);
+
+            ValorFilaPrioridade valor;
+
+            valor.ocorrencia = novaOcorrencia;
+
+            switch(novaOcorrencia.gravidade)
+            {
+                case GRAVIDADE_BAIXA:
+
+                    inserirValorFilaPFim(&(simulador->filaAtendimento), valor);
+                    break;
+
+                case GRAVIDADE_MEDIA:
+                case GRAVIDADE_ALTA:
+
+                    inserirValorFilaPInicio(&(simulador->filaAtendimento), valor);
+                    break;
+
+            }
+
+        }
+
+        while(!estaVaziaFilaP(&(simulador->filaAtendimento)))
+        {
+            ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaAtendimento));
+
+            Ocorrencia ocorrencia = valor.ocorrencia;
+
+            printf("\n[%s]: Ocorrência retirada da fila de atedimento: %s\n",
+                   simulador->tempoAtualSimulacao, ocorrencia.descricao);
+        }
 
         simulador->tempoSimulacao++;
 

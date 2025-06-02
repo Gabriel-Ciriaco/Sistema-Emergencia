@@ -9,9 +9,9 @@
 
 typedef union valorFilaPrioridade
 {
-    Ocorrencia * ocorrencia;
+    Ocorrencia ocorrencia;
 
-    UnidadeServico * unidadeServico;
+    UnidadeServico unidadeServico;
 
 } ValorFilaPrioridade;
 

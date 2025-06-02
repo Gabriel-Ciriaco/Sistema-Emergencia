@@ -12,7 +12,7 @@ int main()
 
     Simulador simulador = criarSimulador();
 
-    alterarTempoMaximoSimulacao(&simulador, 10);
+    alterarTempoMaximoSimulacao(&simulador, 30);
 
     printf("\n** Simulação Iniciada **\n");
 

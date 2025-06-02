@@ -93,7 +93,7 @@ Ocorrencia gerarOcorrencia(char * horaOcorrencia,
 {
     Ocorrencia novaOcorrencia;
 
-    sprintf(novaOcorrencia.id, "OR%d", rand() % MAX_RAND_ID);
+    sprintf(novaOcorrencia.id, "OC%d", rand() % MAX_RAND_ID);
 
     novaOcorrencia.tipo = rand() % NUM_TIPOS_OCORRENCIA;
 

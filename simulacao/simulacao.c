@@ -88,14 +88,16 @@ bool rodarSimulacao(Simulador * simulador)
 
                 Cidadao * vitimaTabela = resgatarCadastroCidadao(&(simulador->cidadaos),
                                                                  vitima.id);
+
                 Cidadao * responsavelTabela = resgatarCadastroCidadao(&(simulador->cidadaos),
                                                                       responsavel.id);
 
                 Ocorrencia novaOcorrencia = gerarOcorrencia(simulador->tempoAtualSimulacao,
                                                             vitimaTabela, responsavelTabela);
 
-                printf("\n[%s]: Nova ocorrência: %s\nVítima: %s\nResponsável: %s\n",
+                printf("\n[%s]: Nova ocorrência: %s\nDescrição: %s\nVítima: %s\nResponsável: %s\n",
                         simulador->tempoAtualSimulacao,
+                        novaOcorrencia.id,
                         novaOcorrencia.descricao,
                         novaOcorrencia.vitima->nome,
                         novaOcorrencia.responsavel->nome);
@@ -129,8 +131,8 @@ bool rodarSimulacao(Simulador * simulador)
 
             Ocorrencia ocorrencia = valor.ocorrencia;
 
-            printf("\n[%s]: Ocorrência retirada da fila de atedimento: %s\n",
-                   simulador->tempoAtualSimulacao, ocorrencia.descricao);
+            printf("\n[%s]: Ocorrência retirada da fila de atendimento: %s\n",
+                   simulador->tempoAtualSimulacao, ocorrencia.id);
 
             switch(valor.ocorrencia.tipo)
             {
@@ -178,7 +180,7 @@ bool rodarSimulacao(Simulador * simulador)
             Ocorrencia ocorrencia = valor.ocorrencia;
 
             printf("\n[%s]: Ocorrência retirada da fila do bombeiro: %s\n",
-                   simulador->tempoAtualSimulacao, ocorrencia.descricao);
+                   simulador->tempoAtualSimulacao, ocorrencia.id);
 
             /*
                 TO-DO: realizar o tratamento da ocorrencia retirarda.
@@ -187,12 +189,12 @@ bool rodarSimulacao(Simulador * simulador)
 
         while(!estaVaziaFilaP(&(simulador->filaHospital)))
         {
-            ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaBombeiro));
+            ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaHospital));
 
             Ocorrencia ocorrencia = valor.ocorrencia;
 
             printf("\n[%s]: Ocorrência retirada da fila do hospital: %s\n",
-                   simulador->tempoAtualSimulacao, ocorrencia.descricao);
+                   simulador->tempoAtualSimulacao, ocorrencia.id);
 
             /*
                 TO-DO: realizar o tratamento da ocorrencia retirarda.
@@ -207,7 +209,7 @@ bool rodarSimulacao(Simulador * simulador)
             Ocorrencia ocorrencia = valor.ocorrencia;
 
             printf("\n[%s]: Ocorrência retirada da fila da polícia: %s\n",
-                   simulador->tempoAtualSimulacao, ocorrencia.descricao);
+                   simulador->tempoAtualSimulacao, ocorrencia.id);
 
             /*
                 TO-DO: realizar o tratamento da ocorrencia retirarda.

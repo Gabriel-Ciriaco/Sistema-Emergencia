@@ -1,28 +1,28 @@
-Perturbação do sossego.0
+Ameaça verbal contra vizinho.0
 Roubo a pedestre.1
 Homicídio qualificado.2
 Briga de trânsito.1
 Sequestro.2
-Vandalismo em propriedade.0
+Dano a veículo alheio.0
 Furto em residência.1
 Latrocínio.2
-Desacato a autoridade.0
+Injúria contra agente de segurança.0
 Agressão com lesão corporal.1
 Ameaça com arma branca.1
 Tráfico de drogas.2
-Perturbação em via pública.0
+Invasão de domicílio sem violência.0
 Estelionato.1
 Tentativa de homicídio.2
 Roubo a mão armada.2
 Violência doméstica.1
 Atentado contra autoridade.2
-Desobediência.0
+Invasão de residência para confronto.0
 Roubo de veículo.2
 Fraude bancária.1
 Extorsão mediante sequestro.2
 Briga em estabelecimento.1
 Posse ilegal de arma.2
-Perturbação em evento.0
+Agressão verbal a participante de evento.0
 Roubo a banco.2
 Agressão a idoso.1
 Crime organizado.2
@@ -34,7 +34,7 @@ Homicídio culposo.2
 Ameaça virtual.1
 Roubo a transporte público.2
 Corrupção ativa.2
-Perturbação em condomínio.0
+Agressão leve entre condôminos.0
 Furto de bicicleta.1
 Sequestro relâmpago.2
 Lavagem de dinheiro.2
@@ -46,17 +46,17 @@ Desordem em via pública.0
 Roubo a carga.2
 Agressão a criança.1
 Tráfico de armas.2
-Perturbação em escola.0
+Agressão verbal a professor.0
 Roubo a joalheria.2
 Furto de celular.1
 Crime cibernético.2
-Desacato em delegacia.0
+Ameaça a servidor público.0
 Agressão sexual.2
 Roubo a mão armada em lotérica.2
 Fraude fiscal.1
 Briga em bar.1
 Formação de quadrilha.2
-Perturbação em hospital.0
+Agressão verbal a enfermeira.0
 Roubo a caixa eletrônico.2
 Furto em supermercado.1
 Crime ambiental.2
@@ -65,36 +65,36 @@ Roubo a caminhão.2
 Ameaça a testemunha.2
 Furto de veículo.1
 Crime de responsabilidade.2
-Perturbação em aeroporto.0
+Confusão com passageiro.0
 Roubo a moto.2
 Agressão a funcionário público.1
 Furto em estação de trem.1
 Crime de falsificação.2
 Briga familiar.1
 Roubo a idoso.2
-Perturbação em shopping.0
+Ameaça a lojista.0
 Sequestro internacional.2
 Furto em hotel.1
 Crime de pirataria.2
-Desacato a policial.0
+Ofensa a policial em serviço.0
 Roubo a ônibus.2
 Ameaça com arma de fogo.2
 Furto em praia.1
 Crime de receptação.1
 Roubo a galeria comercial.2
-Perturbação em clube.0
+Briga leve entre associados.0
 Agressão a mulher.1
 Furto em museu.1
 Crime de contrabando.2
 Briga em festa.1
 Roubo a transporte de valores.2
-Perturbação em igreja.0
+Ofensa a líder religioso.0
 Furto em academia.1
 Crime de exploração sexual.2
 Ameaça a juiz.2
 Roubo a estação de metrô.2
 Furto em parque.1
 Crime de racismo.2
-Perturbação em cemitério.0
+Confronto com visitante durante cerimônia.0
 Agressão a deficiente.1
 Roubo a delegacia.2

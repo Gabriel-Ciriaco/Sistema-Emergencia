@@ -2,6 +2,7 @@
 #define SIMULACAO_H
 
 #include "../estruturas/tipos_abstratos/tabela_hash/tabela_hash.h"
+#include "../estruturas/tipos_abstratos/fila_prioridade/fila_prioridade.h"
 
 #include <stdbool.h>
 #include <time.h>
@@ -9,6 +10,10 @@
 #define FORMATO_TEMPO 9
 
 #define MAX_TEMPO_SIMULACAO 100
+
+#define TMP_CHEGADA_OCORRENCIA 10
+
+#define TMP_MAXIMO_OCORRENCIA 20
 
 #define QTD_BAIRROS 10
 
@@ -43,6 +48,10 @@ typedef struct simulador
 
     int tempoSimulacaoMaximo;
 
+    int tempoChegadaOcorrencia;
+
+    int tempoMaximoOcorrencia; //Tempo máximo de espera da ocorrência.
+
 
     int quantidadeBairros;
 
@@ -73,6 +82,16 @@ typedef struct simulador
     TabelaHash samus;*/
 
     TabelaHash unidadesServico;
+
+    FilaPrioridade filaAtendimento;
+
+    FilaPrioridade filaBombeiro;
+
+    FilaPrioridade filaHospital;
+
+    FilaPrioridade filaSamu;
+
+    FilaPrioridade filaPolicia;
 
 } Simulador;
 

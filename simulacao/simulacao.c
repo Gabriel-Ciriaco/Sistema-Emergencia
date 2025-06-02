@@ -19,6 +19,10 @@ Simulador criarSimulador()
 
     novoSimulador.tempoSimulacaoMaximo = MAX_TEMPO_SIMULACAO;
 
+    novoSimulador.tempoChegadaOcorrencia = TMP_CHEGADA_OCORRENCIA;
+
+    novoSimulador.tempoMaximoOcorrencia = TMP_MAXIMO_OCORRENCIA;
+
 
     /* Inicialização das quantidades */
     novoSimulador.quantidadeBairros = QTD_BAIRROS;
@@ -39,6 +43,16 @@ Simulador criarSimulador()
     novoSimulador.cidadaos = criarTabelaHash(HASH_CIDADAO);
 
     novoSimulador.unidadesServico = criarTabelaHash(HASH_UNIDADE_SERVICO);
+
+    novoSimulador.filaAtendimento = criarFilaPrioridade();
+
+    novoSimulador.filaBombeiro = criarFilaPrioridade();
+
+    novoSimulador.filaHospital = criarFilaPrioridade();
+
+    novoSimulador.filaPolicia = criarFilaPrioridade();
+
+    novoSimulador.filaSamu = criarFilaPrioridade();
 
     return novoSimulador;
 }
@@ -131,6 +145,12 @@ bool limparSimulacao(Simulador * simulador)
     limparTabela(&(simulador->bairros));
     limparTabela(&(simulador->cidadaos));
     limparTabela(&(simulador->unidadesServico));
+
+    limparFilaPrioridade(&(simulador->filaAtendimento));
+    limparFilaPrioridade(&(simulador->filaBombeiro));
+    limparFilaPrioridade(&(simulador->filaHospital));
+    limparFilaPrioridade(&(simulador->filaPolicia));
+    limparFilaPrioridade(&(simulador->filaSamu));
 
     return true;
 }

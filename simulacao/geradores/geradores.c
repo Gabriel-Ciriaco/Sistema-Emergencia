@@ -10,11 +10,11 @@
 #include <ctype.h>
 #include <time.h>
 
-Bairro gerarBairro(const char * nome, UnidadeServico unidadeServico)
+Bairro gerarBairro()
 {
     Bairro novoBairro;
 
-    strcpy(novoBairro.nome, nome);
+    textoAleatorio(&novoBairro.nome, NOMES_BAIRRO_PATH);
 
     sprintf(novoBairro.id, "BA%d", rand() % MAX_RAND_ID);
 

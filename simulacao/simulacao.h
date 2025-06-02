@@ -7,6 +7,7 @@
 #include <time.h>
 
 #define FORMATO_TEMPO 9
+
 #define MAX_TEMPO_SIMULACAO 100
 
 #define QTD_BAIRROS 10

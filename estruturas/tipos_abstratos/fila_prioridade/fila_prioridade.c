@@ -22,6 +22,8 @@ FilaPrioridade criarFilaPrioridade()
     novaFila.inicio = NULL;
 
     novaFila.fim = NULL;
+
+    return novaFila;
 }
 
 bool estaVaziaFilaP(FilaPrioridade * filaP)

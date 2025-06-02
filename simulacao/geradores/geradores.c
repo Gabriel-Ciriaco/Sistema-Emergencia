@@ -87,7 +87,7 @@ Cidadao gerarCidadao()
 
 }
 
-Ocorrencia gerarOcorrencia(struct tm horaOcorrencia,
+Ocorrencia gerarOcorrencia(char * horaOcorrencia,
                            Cidadao * vitima,
                            Cidadao * responsavel)
 {
@@ -97,7 +97,7 @@ Ocorrencia gerarOcorrencia(struct tm horaOcorrencia,
 
     novaOcorrencia.tipo = rand() % NUM_TIPOS_OCORRENCIA;
 
-    novaOcorrencia.horaOcorrencia = horaOcorrencia;
+    strcpy(novaOcorrencia.horaOcorrencia, horaOcorrencia);
 
     novaOcorrencia.vitima = vitima;
 

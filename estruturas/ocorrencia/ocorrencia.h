@@ -16,6 +16,7 @@
 
 #define MAX_DESCRICAO 100
 
+#define HORA_OCORRENCIA 9
 
 typedef enum tipoOcorrencia
 {
@@ -39,7 +40,7 @@ typedef struct ocorrencia
 
     Gravidade gravidade;
 
-    struct tm horaOcorrencia;
+    char horaOcorrencia[HORA_OCORRENCIA];
 
     char descricao[MAX_DESCRICAO];
 

@@ -30,7 +30,7 @@ Bairro gerarBairro(const char * nome, UnidadeServico unidadeServico);
 
 Cidadao gerarCidadao();
 
-Ocorrencia gerarOcorrencia(struct tm horaOcorrencia,
+Ocorrencia gerarOcorrencia(char * horaOcorrencia,
                            Cidadao * vitima,
                            Cidadao * responsavel);
 

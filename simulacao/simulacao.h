@@ -27,6 +27,8 @@
 
 #define QTD_SAMUS 10
 
+#define QTD_MAX_OCORRENCIAS_CICLO 5
+
 typedef enum tipoEntidadeSimulador
 {
     ENTIDADE_BAIRRO,
@@ -64,6 +66,8 @@ typedef struct simulador
     int quantidadePolicias;
 
     int quantidadeSamus;
+
+    int qtdMaximaOcorrenciasPorCiclo;
 
 
     TabelaHash bairros;

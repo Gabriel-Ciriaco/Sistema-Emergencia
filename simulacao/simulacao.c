@@ -37,6 +37,8 @@ Simulador criarSimulador()
 
     novoSimulador.quantidadeSamus = QTD_SAMUS;
 
+    novoSimulador.qtdMaximaOcorrenciasPorCiclo = QTD_MAX_OCORRENCIAS_CICLO;
+
     /* Inicialização das tabelas */
     novoSimulador.bairros = criarTabelaHash(HASH_BAIRRO);
 
@@ -74,43 +76,52 @@ bool rodarSimulacao(Simulador * simulador)
 
         if(simulador->tempoSimulacao % simulador->tempoChegadaOcorrencia == 0)
         {
-            Cidadao vitima = gerarCidadao();
-            Cidadao responsavel = gerarCidadao();
+            int qtdOcorrenciasNoCiclo = rand() % simulador->qtdMaximaOcorrenciasPorCiclo + 1;
 
-            cadastrarCidadao(&(simulador->cidadaos), vitima);
-            cadastrarCidadao(&(simulador->cidadaos), responsavel);
-
-            Cidadao * vitimaTabela = resgatarCadastroCidadao(&(simulador->cidadaos), vitima.id);
-            Cidadao * responsavelTabela = resgatarCadastroCidadao(&(simulador->cidadaos), responsavel.id);
-
-            Ocorrencia novaOcorrencia = gerarOcorrencia(simulador->tempoAtualSimulacao, vitimaTabela, responsavelTabela);
-
-            printf("\n[%s]: Nova ocorrência: %s\nVítima: %s\nResponsável: %s\n",
-                   simulador->tempoAtualSimulacao,
-                   novaOcorrencia.descricao,
-                   novaOcorrencia.vitima->nome,
-                   novaOcorrencia.responsavel->nome);
-
-            ValorFilaPrioridade valor;
-
-            valor.ocorrencia = novaOcorrencia;
-
-            switch(novaOcorrencia.gravidade)
+            for(int i=1; i <= qtdOcorrenciasNoCiclo; i++)
             {
-                case GRAVIDADE_BAIXA:
+                Cidadao vitima = gerarCidadao();
+                Cidadao responsavel = gerarCidadao();
 
-                    inserirValorFilaPFim(&(simulador->filaAtendimento), valor);
-                    break;
+                cadastrarCidadao(&(simulador->cidadaos), vitima);
+                cadastrarCidadao(&(simulador->cidadaos), responsavel);
 
-                case GRAVIDADE_MEDIA:
-                case GRAVIDADE_ALTA:
+                Cidadao * vitimaTabela = resgatarCadastroCidadao(&(simulador->cidadaos),
+                                                                 vitima.id);
+                Cidadao * responsavelTabela = resgatarCadastroCidadao(&(simulador->cidadaos),
+                                                                      responsavel.id);
 
-                    inserirValorFilaPInicio(&(simulador->filaAtendimento), valor);
-                    break;
+                Ocorrencia novaOcorrencia = gerarOcorrencia(simulador->tempoAtualSimulacao,
+                                                            vitimaTabela, responsavelTabela);
+
+                printf("\n[%s]: Nova ocorrência: %s\nVítima: %s\nResponsável: %s\n",
+                        simulador->tempoAtualSimulacao,
+                        novaOcorrencia.descricao,
+                        novaOcorrencia.vitima->nome,
+                        novaOcorrencia.responsavel->nome);
+
+                ValorFilaPrioridade valor;
+
+                valor.ocorrencia = novaOcorrencia;
+
+                switch(novaOcorrencia.gravidade)
+                {
+                    case GRAVIDADE_BAIXA:
+
+                        inserirValorFilaPFim(&(simulador->filaAtendimento), valor);
+                        break;
+
+                    case GRAVIDADE_MEDIA:
+                    case GRAVIDADE_ALTA:
+
+                        inserirValorFilaPInicio(&(simulador->filaAtendimento), valor);
+                        break;
+
+                }
 
             }
-
         }
+
 
         while(!estaVaziaFilaP(&(simulador->filaAtendimento)))
         {
@@ -120,6 +131,88 @@ bool rodarSimulacao(Simulador * simulador)
 
             printf("\n[%s]: Ocorrência retirada da fila de atedimento: %s\n",
                    simulador->tempoAtualSimulacao, ocorrencia.descricao);
+
+            switch(valor.ocorrencia.tipo)
+            {
+                case OCORRENCIA_BOMBEIRO:
+
+                    if(valor.ocorrencia.gravidade == GRAVIDADE_MEDIA || valor.ocorrencia.gravidade == GRAVIDADE_ALTA)
+                    {
+                        inserirValorFilaPInicio(&(simulador->filaBombeiro), valor);
+                    }
+                    else
+                    {
+                        inserirValorFilaPFim(&(simulador->filaBombeiro), valor);
+                    }
+                    break;
+
+                case OCORRENCIA_HOSPITAL:
+
+                    if(valor.ocorrencia.gravidade == GRAVIDADE_MEDIA || valor.ocorrencia.gravidade == GRAVIDADE_ALTA)
+                    {
+                        inserirValorFilaPInicio(&(simulador->filaHospital), valor);
+                    }
+                    else
+                    {
+                        inserirValorFilaPFim(&(simulador->filaHospital), valor);
+                    }
+
+                case OCORRENCIA_POLICIA:
+
+                    if(valor.ocorrencia.gravidade == GRAVIDADE_MEDIA || valor.ocorrencia.gravidade == GRAVIDADE_ALTA)
+                    {
+                        inserirValorFilaPInicio(&(simulador->filaPolicia), valor);
+                    }
+                    else
+                    {
+                        inserirValorFilaPFim(&(simulador->filaPolicia), valor);
+                    }
+
+            }
+        }
+
+        while(!estaVaziaFilaP(&(simulador->filaBombeiro)))
+        {
+            ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaBombeiro));
+
+            Ocorrencia ocorrencia = valor.ocorrencia;
+
+            printf("\n[%s]: Ocorrência retirada da fila do bombeiro: %s\n",
+                   simulador->tempoAtualSimulacao, ocorrencia.descricao);
+
+            /*
+                TO-DO: realizar o tratamento da ocorrencia retirarda.
+            */
+        }
+
+        while(!estaVaziaFilaP(&(simulador->filaHospital)))
+        {
+            ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaBombeiro));
+
+            Ocorrencia ocorrencia = valor.ocorrencia;
+
+            printf("\n[%s]: Ocorrência retirada da fila do hospital: %s\n",
+                   simulador->tempoAtualSimulacao, ocorrencia.descricao);
+
+            /*
+                TO-DO: realizar o tratamento da ocorrencia retirarda.
+            */
+
+        }
+
+        while(!estaVaziaFilaP(&(simulador->filaPolicia)))
+        {
+            ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaPolicia));
+
+            Ocorrencia ocorrencia = valor.ocorrencia;
+
+            printf("\n[%s]: Ocorrência retirada da fila da polícia: %s\n",
+                   simulador->tempoAtualSimulacao, ocorrencia.descricao);
+
+            /*
+                TO-DO: realizar o tratamento da ocorrencia retirarda.
+            */
+
         }
 
         simulador->tempoSimulacao++;

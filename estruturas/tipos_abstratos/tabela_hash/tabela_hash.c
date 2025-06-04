@@ -141,11 +141,13 @@ void limparTabela(TabelaHash * tabelaH)
 {
     for (int i = 0; i < MAX_TABELA_HASH; i++)
     {
-        NoHash * elemento = tabelaH->tabela[i];
+        NoHash *atual = tabelaH->tabela[i];
 
-        if (elemento)
+        while(atual != NULL)
         {
-            removerValorTabela(tabelaH, elemento->chave);
+            NoHash *temp = atual;
+            atual = atual->prox;
+            free(temp);
         }
 
         tabelaH->tabela[i] = NULL;

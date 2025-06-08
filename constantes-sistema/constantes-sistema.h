@@ -14,5 +14,7 @@
 
 #define MAX_ATIVAS 20
 
+#define MAX_BAIRROS 20
+
 
 #endif // CONSTANTES-SISTEMA_H

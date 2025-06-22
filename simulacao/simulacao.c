@@ -1,8 +1,6 @@
 #include "simulacao.h"
 #include "./geradores/geradores.h"
 #include "./cadastramento/cadastro.h"
-#include "../estruturas/tipos_abstratos/arvore_ABB/arvore_abb.h"
-#include "../estruturas/tipos_abstratos/pilha/pilha.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,6 +29,8 @@ Simulador criarSimulador()
     novoSimulador.quantidadeBairros = QTD_BAIRROS;
 
     novoSimulador.quantidadeCidadaos = QTD_CIDADAOS;
+
+    novoSimulador.quantidadeProfissionais = QTD_PROFISSIONAIS;
 
     novoSimulador.quantidadeBombeiros = QTD_BOMBEIROS;
 
@@ -77,7 +77,7 @@ bool rodarSimulacao(Simulador * simulador)
     */
     srand(time(NULL));
 
-    for (int i = 0; i < MAX_TABELA_HASH; i++)
+    for (int i = 0; i < simulador->quantidadeProfissionais; i++)
     {
         Profissional novoProfissional = gerarProfissional();
 
@@ -111,7 +111,9 @@ bool rodarSimulacao(Simulador * simulador)
                 Ocorrencia novaOcorrencia = gerarOcorrencia(simulador->tempoAtualSimulacao,
                                                             vitimaTabela, responsavelTabela);
 
-                inserirValorPilha(profissionalTabela->historicoAtendimento, novaOcorrencia);
+                Profissional * profissionalTabela = resgatarProfissionalAleatorio(&(simulador->profissionais), simulador->quantidadeProfissionais);
+
+                inserirValorPilha(&(profissionalTabela->historicoAtendimento), novaOcorrencia);
 
                 simulador->ocorrenciasPorID = inserirValorABB(simulador->ocorrenciasPorID, novaOcorrencia);
 
@@ -120,6 +122,7 @@ bool rodarSimulacao(Simulador * simulador)
                         novaOcorrencia.id,
                         novaOcorrencia.descricao,
                         novaOcorrencia.vitima->nome);
+
 
                 if (novaOcorrencia.responsavel)
                 {
@@ -143,6 +146,10 @@ bool rodarSimulacao(Simulador * simulador)
 
                         break;
                 }
+
+                printf("-Profissional que atendeu a ocorrencia:\n");
+                printf("  -ID: %s\n", profissionalTabela->cidadao.id);
+                printf("  -Nome: %s\n", profissionalTabela->cidadao.nome);
 
                 ValorFilaPrioridade valor;
 
@@ -279,6 +286,51 @@ bool rodarSimulacao(Simulador * simulador)
 
         sleep(1); // Espera 1 segundo.
     }
+
+    // TO-DO: APAGAR ISTO
+    int i = 0;
+    int profissionaisMostrados = 0;
+
+    printf("\n\n** Histórico de Atendimento dos Profissionais **\n");
+
+    while(i < MAX_TABELA_HASH && profissionaisMostrados < simulador->quantidadeProfissionais)
+    {
+        NoHash * no = simulador->profissionais.tabela[i];
+
+        if (no)
+        {
+            do
+            {
+                Profissional * prof = &(no->valor.profissional);
+
+
+                printf("\nProfissional:\n");
+                printf("- ID: %s\n", prof->cidadao.id);
+                printf("- Nome: %s\n", prof->cidadao.nome);
+
+                if (estaVaziaPilha(&(prof->historicoAtendimento)))
+                {
+                    printf("\n  -Nenhuma ocorrência atendida pelo profissional.\n");
+                }
+
+                while(!estaVaziaPilha(&(prof->historicoAtendimento)))
+                {
+                    Ocorrencia ocorrencia = removerValorPilha(&(prof->historicoAtendimento));
+                    printf("\n  -Ocorrência atendida pelo profissional:\n");
+                    printf("    -ID da Ocorrência: %s\n", ocorrencia.id);
+                    printf("    -Descrição: %s\n", ocorrencia.descricao);
+                }
+
+                profissionaisMostrados++;
+
+                no = no->prox;
+            } while(no);
+        }
+
+        i++;
+
+    }
+
 
     return limparSimulacao(simulador);
 }

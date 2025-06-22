@@ -31,6 +31,9 @@ void cadastrarProfissional(TabelaHash * profissionais,
 Profissional * resgatarCadastroProfissional(TabelaHash * profissionais,
                                             const char * profissionalId);
 
+Profissional * resgatarProfissionalAleatorio(TabelaHash * profissionais,
+                                             int quantidadeProfissionais);
+
 
 void cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro);
 

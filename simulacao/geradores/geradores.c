@@ -3,6 +3,8 @@
 
 #include "../../constantes-sistema/constantes-sistema.h"
 
+#include "../../estruturas/tipos_abstratos/pilha/pilha.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -94,6 +96,10 @@ Profissional gerarProfissional()
     Profissional novoProfissional;
 
     novoProfissional.cidadao = profissionalCidadao;
+
+    novoProfissional.historicoAtendimento = criarPilha();
+
+    textoAleatorio(novoProfissional.cidadao.nome, NOMES_PROFISSIONAL_PATH);
 
     return novoProfissional;
 }

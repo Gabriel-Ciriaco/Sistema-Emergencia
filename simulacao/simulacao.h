@@ -21,6 +21,8 @@
 
 #define QTD_CIDADAOS 10
 
+#define QTD_PROFISSIONAIS 10
+
 #define QTD_BOMBEIROS 10
 
 #define QTD_HOSPITAIS 10

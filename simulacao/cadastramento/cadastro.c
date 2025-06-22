@@ -1,6 +1,7 @@
 #include "cadastro.h"
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 void cadastrarBairro(TabelaHash * bairros, Bairro bairro)
 {
@@ -55,6 +56,40 @@ Profissional * resgatarCadastroProfissional(TabelaHash * profissionais, const ch
     if (!valor) return NULL;
 
     return &(valor->profissional.cidadao);
+}
+
+Profissional * resgatarProfissionalAleatorio(TabelaHash * profissionais, int quantidadeProfissionais)
+{
+    int profissionalAleatorio = rand() % quantidadeProfissionais;
+
+    int i = 0;
+
+    int profissionaisProcurados = 0;
+
+    bool achouProfissional = false;
+
+    NoHash * no = NULL;
+
+    while(!achouProfissional)
+    {
+        no = profissionais->tabela[i++];
+
+        if (no)
+        {
+            profissionaisProcurados++;
+
+            while ( profissionaisProcurados < profissionalAleatorio && no->prox)
+            {
+                no = no->prox;
+
+                profissionaisProcurados++;
+            }
+
+            if (profissionaisProcurados >= profissionalAleatorio) achouProfissional = true;
+        }
+    }
+
+    return &(no->valor.profissional.cidadao);
 }
 
 void cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro)

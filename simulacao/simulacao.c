@@ -50,6 +50,7 @@ Simulador criarSimulador()
 
     novoSimulador.unidadesServico = criarTabelaHash(HASH_UNIDADE_SERVICO);
 
+    /*Inicialização das filas*/
     novoSimulador.filaAtendimento = criarFilaPrioridade();
 
     novoSimulador.filaBombeiro = criarFilaPrioridade();
@@ -60,6 +61,7 @@ Simulador criarSimulador()
 
     novoSimulador.filaSamu = criarFilaPrioridade();
 
+    /*Inicialização da ABB*/
     novoSimulador.ocorrenciasPorID = criarABB();
 
     return novoSimulador;

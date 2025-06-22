@@ -1,23 +1,25 @@
-#ifndef ARVORE_ABB_H_INCLUDED
-#define ARVORE_ABB_H_INCLUDED
+#ifndef ArvoreABB_ABB_H_INCLUDED
+#define ArvoreABB_ABB_H_INCLUDED
 
 #include "../../ocorrencia/ocorrencia.h"
 
-typedef struct no
+typedef struct ArvoreABB
 {
     Ocorrencia ocorrencia;
-    struct no *esq;
-    struct no *dir;
-}No;
+    struct ArvoreABB *esq;
+    struct ArvoreABB *dir;
+}ArvoreABB;
 
-No *criarNoABB(Ocorrencia ocorrencia);
+ArvoreABB *criarABB();
 
-No *inserirValorABB(No *raiz, Ocorrencia ocorrencia);
+ArvoreABB *criarArvoreABBABB(Ocorrencia ocorrencia);
 
-No *buscarValorABB(No *raiz, const char *idOcorrencia);
+ArvoreABB *inserirValorABB(ArvoreABB *raiz, Ocorrencia ocorrencia);
 
-No *removerValorABB(No *raiz, Ocorrencia ocorrencia);
+ArvoreABB *buscarValorABB(ArvoreABB *raiz, const char *idOcorrencia);
 
-void destruirABB(No *raiz);
+ArvoreABB *removerValorABB(ArvoreABB *raiz, Ocorrencia ocorrencia);
 
-#endif // ARVORE_ABB_H_INCLUDED
+void destruirABB(ArvoreABB *raiz);
+
+#endif // ArvoreABB_ABB_H_INCLUDED

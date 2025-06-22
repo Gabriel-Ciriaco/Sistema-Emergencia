@@ -5,35 +5,43 @@
 #include<stdlib.h>
 #include<string.h>
 
-No *criarNoABB(Ocorrencia ocorrencia)
+ArvoreABB *criarABB()
 {
-    No *novoNo = (No*)malloc(1*sizeof(No));
+    ArvoreABB *raiz = NULL;
 
-    if(novoNo == NULL)
+    return raiz;
+}
+
+
+ArvoreABB *criarArvoreABBABB(Ocorrencia ocorrencia)
+{
+    ArvoreABB *ArvoreABBvoArvoreABB = (ArvoreABB*)malloc(1*sizeof(ArvoreABB));
+
+    if(ArvoreABBvoArvoreABB == NULL)
     {
         return NULL;
     }
 
-    novoNo->ocorrencia = ocorrencia;
-    novoNo->esq = NULL;
-    novoNo->dir = NULL;
+    ArvoreABBvoArvoreABB->ocorrencia = ocorrencia;
+    ArvoreABBvoArvoreABB->esq = NULL;
+    ArvoreABBvoArvoreABB->dir = NULL;
 
-    return novoNo;
+    return ArvoreABBvoArvoreABB;
 }
 
-No *inserirValorABB(No *raiz, Ocorrencia ocorrencia)
+ArvoreABB *inserirValorABB(ArvoreABB *raiz, Ocorrencia ocorrencia)
 {
     if(raiz == NULL)
     {
-        No *novoNo = criarNoABB(ocorrencia);
+        ArvoreABB *ArvoreABBvoArvoreABB = criarArvoreABBABB(ocorrencia);
 
-        if(novoNo == NULL)
+        if(ArvoreABBvoArvoreABB == NULL)
         {
             printf("\nErro ao alocar memória!\n");
             return raiz;
         }
 
-        return novoNo;
+        return ArvoreABBvoArvoreABB;
     }
 
     if(strcmp(raiz->ocorrencia.id, ocorrencia.id) == 0)
@@ -53,7 +61,7 @@ No *inserirValorABB(No *raiz, Ocorrencia ocorrencia)
     return raiz;
 }
 
-No *buscarValorABB(No *raiz, const char *idOcorrencia)
+ArvoreABB *buscarValorABB(ArvoreABB *raiz, const char *idOcorrencia)
 {
     if(raiz == NULL)
     {
@@ -75,7 +83,7 @@ No *buscarValorABB(No *raiz, const char *idOcorrencia)
     }
 }
 
-No *removerValorABB(No *raiz, Ocorrencia ocorrencia)
+ArvoreABB *removerValorABB(ArvoreABB *raiz, Ocorrencia ocorrencia)
 {
     if(raiz == NULL)
     {
@@ -92,7 +100,7 @@ No *removerValorABB(No *raiz, Ocorrencia ocorrencia)
 
         if(raiz->esq != NULL && raiz->dir != NULL)
         {
-            No *aux = raiz->esq;
+            ArvoreABB *aux = raiz->esq;
 
             while(aux->dir != NULL)
             {
@@ -108,7 +116,7 @@ No *removerValorABB(No *raiz, Ocorrencia ocorrencia)
         }
         else
         {
-            No *aux;
+            ArvoreABB *aux;
 
             if(raiz->esq != NULL)
             {
@@ -138,7 +146,7 @@ No *removerValorABB(No *raiz, Ocorrencia ocorrencia)
     }
 }
 
-void destruirABB(No *raiz)
+void destruirABB(ArvoreABB *raiz)
 {
     if(raiz != NULL)
     {

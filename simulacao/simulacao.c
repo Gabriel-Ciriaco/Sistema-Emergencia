@@ -1,6 +1,7 @@
 #include "simulacao.h"
 #include "./geradores/geradores.h"
 #include "./cadastramento/cadastro.h"
+#include "../estruturas/tipos_abstratos/arvore_ABB/arvore_abb.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,6 +58,8 @@ Simulador criarSimulador()
 
     novoSimulador.filaSamu = criarFilaPrioridade();
 
+    novoSimulador.ocorrenciasPorID = criarABB();
+
     return novoSimulador;
 }
 
@@ -95,6 +98,8 @@ bool rodarSimulacao(Simulador * simulador)
 
                 Ocorrencia novaOcorrencia = gerarOcorrencia(simulador->tempoAtualSimulacao,
                                                             vitimaTabela, responsavelTabela);
+
+                simulador->ocorrenciasPorID = inserirValorABB(simulador->ocorrenciasPorID, novaOcorrencia);
 
                 printf("\n[%s]: Nova ocorrência: %s\n-Descrição: %s\n-Vítima: %s\n",
                         simulador->tempoAtualSimulacao,
@@ -330,6 +335,8 @@ bool limparSimulacao(Simulador * simulador)
     limparFilaPrioridade(&(simulador->filaHospital));
     limparFilaPrioridade(&(simulador->filaPolicia));
     limparFilaPrioridade(&(simulador->filaSamu));
+
+    destruirABB(simulador->ocorrenciasPorID);
 
     return true;
 }

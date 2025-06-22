@@ -46,6 +46,8 @@ Simulador criarSimulador()
 
     novoSimulador.cidadaos = criarTabelaHash(HASH_CIDADAO);
 
+    novoSimulador.profissionais = criarTabelaHash(HASH_PROFISSIONAL);
+
     novoSimulador.unidadesServico = criarTabelaHash(HASH_UNIDADE_SERVICO);
 
     novoSimulador.filaAtendimento = criarFilaPrioridade();
@@ -71,6 +73,13 @@ bool rodarSimulacao(Simulador * simulador)
         Inicializa uma seed para os eventos aleatórios.
     */
     srand(time(NULL));
+
+    for (int i = 0; i < MAX_TABELA_HASH; i++)
+    {
+        Profissional novoProfissional = gerarProfissional();
+
+        cadastrarProfissional(&(simulador->profissionais), novoProfissional);
+    }
 
     while (simulador->tempoSimulacao < simulador->tempoSimulacaoMaximo)
     {
@@ -328,6 +337,7 @@ bool limparSimulacao(Simulador * simulador)
 {
     limparTabela(&(simulador->bairros));
     limparTabela(&(simulador->cidadaos));
+    limparTabela(&(simulador->profissionais));
     limparTabela(&(simulador->unidadesServico));
 
     limparFilaPrioridade(&(simulador->filaAtendimento));

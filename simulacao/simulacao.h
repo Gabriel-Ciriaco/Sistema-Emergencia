@@ -60,6 +60,8 @@ typedef struct simulador
 
     int quantidadeCidadaos;
 
+    int quantidadeProfissionais;
+
     int quantidadeBombeiros;
 
     int quantidadeHospitais;
@@ -74,6 +76,8 @@ typedef struct simulador
     TabelaHash bairros;
 
     TabelaHash cidadaos;
+
+    TabelaHash profissionais;
 
     /*
     TO-DO: Talvez, criar hash para cada uma.

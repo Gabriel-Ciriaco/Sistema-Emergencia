@@ -39,6 +39,24 @@ Cidadao * resgatarCadastroCidadao(TabelaHash * cidadaos, const char * cidadaoId)
     return &(valor->cidadao);
 }
 
+void cadastrarProfissional(TabelaHash * profissionais, Profissional profissional)
+{
+    ValorHash valor;
+
+    valor.profissional = profissional;
+
+    inserirValorTabela(profissionais, profissional.cidadao.id, valor);
+}
+
+Profissional * resgatarCadastroProfissional(TabelaHash * profissionais, const char * profissionalId)
+{
+    ValorHash * valor = buscaValorTabela(profissionais, profissionalId);
+
+    if (!valor) return NULL;
+
+    return &(valor->profissional.cidadao);
+}
+
 void cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro)
 {
     ValorHash valor;

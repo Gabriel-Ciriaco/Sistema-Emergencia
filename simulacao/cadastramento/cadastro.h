@@ -5,6 +5,7 @@
 
 #include "../../estruturas/bairro/bairro.h"
 #include "../../estruturas/cidadao/cidadao.h"
+#include "../../estruturas/profissional/profissional.h"
 
 #include "../../estruturas/unidades-de-servico/bombeiro/bombeiro.h"
 #include "../../estruturas/unidades-de-servico/hospital/hospital.h"
@@ -22,6 +23,13 @@ void cadastrarCidadao(TabelaHash * cidadaos, Cidadao cidadao);
 
 Cidadao * resgatarCadastroCidadao(TabelaHash * cidadaos,
                                   const char * cidadaoId);
+
+
+void cadastrarProfissional(TabelaHash * profissionais,
+                           Profissional profissional);
+
+Profissional * resgatarCadastroProfissional(TabelaHash * profissionais,
+                                            const char * profissionalId);
 
 
 void cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro);

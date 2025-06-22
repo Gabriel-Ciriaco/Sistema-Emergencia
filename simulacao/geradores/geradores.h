@@ -5,6 +5,7 @@
 
 #include "../../estruturas/bairro/bairro.h"
 #include "../../estruturas/cidadao/cidadao.h"
+#include "../../estruturas/profissional/profissional.h"
 
 #include "../../estruturas/ocorrencia/ocorrencia.h"
 
@@ -21,6 +22,8 @@
 
 #define NOMES_CIDADAO_PATH "./estruturas/cidadao/nomes_cidadao.txt"
 
+#define NOMES_PROFISSIONAL_PATH "./estruturas/profissional/nomes_profissional.txt"
+
 #define OCORRENCIAS_BOMBEIRO_PATH "./estruturas/ocorrencia/ocorrencias_bombeiro.txt"
 
 #define OCORRENCIAS_HOSPITAL_PATH "./estruturas/ocorrencia/ocorrencias_hospital.txt"
@@ -32,6 +35,8 @@
 Bairro gerarBairro();
 
 Cidadao gerarCidadao();
+
+Profissional gerarProfissional();
 
 Ocorrencia gerarOcorrencia(char * horaOcorrencia,
                            Cidadao * vitima,

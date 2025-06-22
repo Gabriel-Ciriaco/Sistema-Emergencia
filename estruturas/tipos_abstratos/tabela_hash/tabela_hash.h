@@ -7,6 +7,8 @@
 
 #include "../../cidadao/cidadao.h"
 
+#include "../../profissional/profissional.h"
+
 #include "../../unidades-de-servico/unidadade-de-servico.h"
 
 
@@ -17,6 +19,7 @@ typedef enum
 {
     HASH_BAIRRO,
     HASH_CIDADAO,
+    HASH_PROFISSIONAL,
     HASH_UNIDADE_SERVICO,
 } TipoElementoHash;
 
@@ -24,6 +27,7 @@ typedef union valorHash
 {
     Bairro bairro;
     Cidadao cidadao;
+    Profissional profissional;
     UnidadeServico unidadeServico;
 } ValorHash;
 

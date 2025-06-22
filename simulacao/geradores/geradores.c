@@ -87,6 +87,17 @@ Cidadao gerarCidadao()
 
 }
 
+Profissional gerarProfissional()
+{
+    Cidadao profissionalCidadao = gerarCidadao();
+
+    Profissional novoProfissional;
+
+    novoProfissional.cidadao = profissionalCidadao;
+
+    return novoProfissional;
+}
+
 Ocorrencia gerarOcorrencia(char * horaOcorrencia,
                            Cidadao * vitima,
                            Cidadao * responsavel)

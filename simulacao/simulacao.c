@@ -2,6 +2,7 @@
 #include "./geradores/geradores.h"
 #include "./cadastramento/cadastro.h"
 #include "../estruturas/tipos_abstratos/arvore_ABB/arvore_abb.h"
+#include "../estruturas/tipos_abstratos/pilha/pilha.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -109,6 +110,8 @@ bool rodarSimulacao(Simulador * simulador)
 
                 Ocorrencia novaOcorrencia = gerarOcorrencia(simulador->tempoAtualSimulacao,
                                                             vitimaTabela, responsavelTabela);
+
+                inserirValorPilha(profissionalTabela->historicoAtendimento, novaOcorrencia);
 
                 simulador->ocorrenciasPorID = inserirValorABB(simulador->ocorrenciasPorID, novaOcorrencia);
 

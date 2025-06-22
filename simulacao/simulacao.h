@@ -6,6 +6,7 @@
 #include "../estruturas/tipos_abstratos/tabela_hash/tabela_hash.h"
 #include "../estruturas/tipos_abstratos/fila_prioridade/fila_prioridade.h"
 #include "../estruturas/tipos_abstratos/arvore_ABB/arvore_abb.h"
+#include "../estruturas/tipos_abstratos/pilha/pilha.h"
 
 #include <stdbool.h>
 #include <time.h>
@@ -103,7 +104,6 @@ typedef struct simulador
     FilaPrioridade filaPolicia;
 
     ArvoreABB *ocorrenciasPorID;
-
 
 } Simulador;
 

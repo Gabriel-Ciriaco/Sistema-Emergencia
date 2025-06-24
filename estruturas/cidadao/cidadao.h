@@ -10,7 +10,7 @@
 
 #define CPF_SIZE 15
 
-#define MAX_TELEFONE 16
+#define MAX_TELEFONE 17
 
 
 typedef struct cidadao

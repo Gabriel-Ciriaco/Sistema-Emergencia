@@ -63,7 +63,7 @@ void telefoneAleatorio(char * telefone)
         numero[i] = rand() % 10;
     }
 
-    sprintf(telefone, "(%02d) %d%d%d%d%d-%d%d%d%d",
+    sprintf(telefone, "(+%02d) %d%d%d%d%d-%d%d%d%d",
             DDD,
             numero[0], numero[1], numero[2], numero[3], numero[4],
             numero[5], numero[6], numero[7], numero[8]);

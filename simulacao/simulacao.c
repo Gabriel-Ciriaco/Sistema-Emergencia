@@ -191,10 +191,7 @@ bool rodarSimulacao(Simulador * simulador)
         sleep(1); // Espera 1 segundo.
     }
 
-    exibirTodosAtendimentos(&(simulador->profissionais), simulador->quantidadeProfissionais);
-
-
-    return limparSimulacao(simulador);
+    return true;
 }
 
 bool alterarTempoMaximoSimulacao(Simulador * simulador, int novoTempo)

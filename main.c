@@ -1,5 +1,4 @@
-#include "simulacao/simulacao.h"
-#include "./simulacao/geradores/geradores.h"
+#include "./simulacao/sistema/sistema.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,25 +7,7 @@
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
-
-    Simulador simulador = criarSimulador();
-
-    alterarTempoMaximoSimulacao(&simulador, 30);
-
-    alterarQuantidadeOcorrenciasCiclo(&simulador, 5);
-
-    printf("\n** Simulação Iniciada **\n");
-
-    if (rodarSimulacao(&simulador))
-    {
-        printf("\n** Simulação finalizada com sucesso. **\n");
-    }
-    else
-    {
-        printf("\n** Houve algum problema ao finalizar o simulador. ** \n");
-    }
-
+    executarSistema();
 
     return 0;
 }

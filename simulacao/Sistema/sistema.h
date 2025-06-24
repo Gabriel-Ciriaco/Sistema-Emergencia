@@ -1,6 +1,8 @@
-#ifndef SISTEMA_H_INCLUDED
-#define SISTEMA_H_INCLUDED
+#ifndef SISTEMA_H
+#define SISTEMA_H
+
+#include "./utilidades_sistema/utilidades_sistema.h"
 
 void executarSistema();
 
-#endif // SISTEMA_H_INCLUDED
+#endif // SISTEMA_H

@@ -1,19 +1,22 @@
 #include "utilidades_sistema.h"
+#include "../../exibicao/exibicao.h"
 
 #include "../../../estruturas/cidadao/cidadao.h"
 #include "../../../estruturas/bairro/bairro.h"
 #include "../../../estruturas/vetoriais/posicao.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+
 void mensagemBoasVindas()
 {
     printf("\n***Bem-vindo a RonalVilla!***\n");
-    printf("\nEste é um simulador de atendimento de emergência urbana,
-           "onde você poderá observar:\n");
+    printf("\nEste é um simulador de atendimento de emergência urbana, onde você poderá observar:\n");
     printf("- A geração dinâmica de ocorrências.\n");
-    printf("- O despacho e priorização de equipes de serviço
-           "(Bombeiros, SAMU, Polícia, Hospital).\n");
-    printf("- Mas, acima de tudo, o impacto das estruturas de
-           "dados na eficiência do sistema.\n");
+    printf("- O despacho e priorização de equipes de serviço (Bombeiros, SAMU, Polícia, Hospital).\n");
+    printf("- Mas, acima de tudo, o impacto das estruturas de dados na eficiência do sistema.\n");
 }
 
 bool configurarSimulacao(Simulador *simulador)
@@ -50,50 +53,19 @@ bool configurarSimulacao(Simulador *simulador)
 
 }
 
-Ocorrencia *buscarOcorrenciaPorID(Arvore *raiz, char const *idOcorrencia)
+Ocorrencia *buscarOcorrenciaPorID(ArvoreABB *raiz, char const *idOcorrencia)
 {
     Ocorrencia *ocorrenciaEncontrada = buscarValorABB(raiz, idOcorrencia);
 
     return ocorrenciaEncontrada;
 }
 
-void exibirOcorrencia(Ocorrencia *ocorrencia)
-{
-    printf("\nOcorrência: %s\n-Descrição: %s\n-Vítima: %s\n",
-                        ocorrencia->id,
-                        ocorrencia->descricao,
-                        ocorrencia->vitima->nome);
-
-                if (ocorrencia->responsavel)
-                {
-                    printf("-Responsável: %s\n", ocorrencia->responsavel->nome);
-                }
-
-                switch(ocorrencia->gravidade)
-                {
-                    case GRAVIDADE_BAIXA:
-                        printf("-Gravidade: Baixa\n");
-
-                        break;
-
-                    case GRAVIDADE_MEDIA:
-                        printf("-Gravidade: Média\n");
-
-                        break;
-
-                    case GRAVIDADE_ALTA:
-                        printf("-Gravidade: Alta\n");
-
-                        break;
-                }
-}
-
-void relatorioOcorrencias(Arvore *raiz)
+void relatorioOcorrencias(ArvoreABB *raiz)
 {
     if(raiz != NULL)
     {
         relatorioOcorrencias(raiz->esq);
-        exbirOcorrencia(&(raiz->ocorrencia));
+        exibirOcorrencia(raiz->ocorrencia);
         relatorioOcorrencias(raiz->dir);
     }
 }
@@ -103,61 +75,8 @@ void listarOcorrenciasPorGravidade(No *raiz)
     if (raiz != NULL)
     {
         listarOcorrenciasPorGravidade(raiz->esq);
-        exibirOcorrencia(&(raiz->ocorrencia));
+        exibirOcorrencia(raiz->ocorrencia);
         listarOcorrenciasPorGravidade(raiz->dir);
-    }
-}
-
-void exibirCidadao(Cidadao *cidadao)
-{
-    printf("ID: %s\n", cidadao->id);
-    printf("Nome: %s\n", cidadao->nome);
-    printf("Idade: %d\n", cidadao->idade);
-    printf("CPF: %s\n", cidadao->cpf);
-    printf("Telefone de Emergência: %s\n", cidadao->telefoneEmergencia);
-    printf("Bairro: %s\n", cidadao->bairro->nome);
-    printf("Posição (X, Y): (%d, %d)\n", cidadao->pos.x, cidadao->pos.y);
-}
-
-void exibirHistoricoAtendimentos(Pilha *pilha)
-{
-    if(estaVaziaPilha(pilha))
-    {
-        printf("Histórico de atendimentos vazio!\n");
-        return;
-    }
-
-    while(pilha->topo != -1)
-    {
-         Ocorrencia ocorrencia = pilha->pilha[pilha->topo--];
-
-         printf("\nOcorrência: %s\n-Descrição: %s\n-Vítima: %s\n",
-                        ocorrencia.id,
-                        ocorrencia.descricao,
-                        ocorrencia.vitima->nome);
-
-                if (ocorrencia.responsavel)
-                {
-                    printf("-Responsável: %s\n", ocorrencia.responsavel->nome);
-                }
-
-                switch(ocorrencia.gravidade)
-                {
-                    case GRAVIDADE_BAIXA:
-                        printf("-Gravidade: Baixa\n");
-
-                        break;
-
-                    case GRAVIDADE_MEDIA:
-                        printf("-Gravidade: Média\n");
-
-                        break;
-
-                    case GRAVIDADE_ALTA:
-                        printf("-Gravidade: Alta\n");
-
-                        break;
-                }
     }
 }
 
@@ -177,9 +96,11 @@ int rodarMenu()
     printf("---------------------------\n");
     printf("7 - Visualizar histórico de atendimentos de um profissional\n");
     printf("---------------------------\n");
+    printf("8 - Visualizar todos os históricos de atendimentos\n");
+    printf("---------------------------\n");
     printf("0 - Sair\n");
     printf("---------------------------\n");
-    printf("Digite o número da opção escolhida:");
+    printf("Digite o número da opção escolhida: ");
     scanf("%d", &opcao);
 
     return opcao;

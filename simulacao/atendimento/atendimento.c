@@ -3,10 +3,14 @@
 #include <stdlib.h>
 
 
-void inserirFilaGravidade(FilaPrioridade * filaP, ValorFilaPrioridade valor)
+void inserirFilaGravidade(FilaPrioridade * filaP, Ocorrencia ocorrencia)
 {
-    if (valor.ocorrencia.gravidade == GRAVIDADE_MEDIA ||
-        valor.ocorrencia.gravidade == GRAVIDADE_ALTA)
+    ValorFilaPrioridade valor;
+
+    valor.ocorrencia = ocorrencia;
+
+    if (ocorrencia.gravidade == GRAVIDADE_MEDIA ||
+        ocorrencia.gravidade == GRAVIDADE_ALTA)
     {
         inserirValorFilaPInicio(filaP, valor);
     }
@@ -14,6 +18,13 @@ void inserirFilaGravidade(FilaPrioridade * filaP, ValorFilaPrioridade valor)
     {
         inserirValorFilaPFim(filaP, valor);
     }
+}
+
+Ocorrencia removerOcorrenciaFila(FilaPrioridade * filaP)
+{
+    ValorFilaPrioridade valor = removerValorFilaP(filaP);
+
+    return valor.ocorrencia;
 }
 
 void tratarFilaOcorrencia(FilaPrioridade * filaP,

@@ -6,7 +6,9 @@
 #include "../../estruturas/tipos_abstratos/fila_prioridade/fila_prioridade.h"
 
 
-void inserirFilaGravidade(FilaPrioridade * filaP, ValorFilaPrioridade valor);
+void inserirFilaGravidade(FilaPrioridade * filaP, Ocorrencia ocorrencia);
+
+Ocorrencia removerOcorrenciaFila(FilaPrioridade * filaP);
 
 void tratarFilaOcorrencia(FilaPrioridade * filaP,
                           const char * tempoSimulacao,

@@ -128,67 +128,46 @@ bool rodarSimulacao(Simulador * simulador)
 
                 exibirProfissional(*profissionalTabela);
 
-
-                ValorFilaPrioridade valor;
-
-                valor.ocorrencia = novaOcorrencia;
-
-                switch(novaOcorrencia.gravidade)
-                {
-                    case GRAVIDADE_BAIXA:
-
-                        inserirValorFilaPFim(&(simulador->filaAtendimento), valor);
-                        break;
-
-                    case GRAVIDADE_MEDIA:
-                    case GRAVIDADE_ALTA:
-
-                        inserirValorFilaPInicio(&(simulador->filaAtendimento), valor);
-                        break;
-
-                }
-
+                inserirFilaGravidade(&(simulador->filaAtendimento), novaOcorrencia);
             }
         }
 
 
         if(!estaVaziaFilaP(&(simulador->filaAtendimento)))
         {
-            ValorFilaPrioridade valor = removerValorFilaP(&(simulador->filaAtendimento));
-
-            Ocorrencia ocorrencia = valor.ocorrencia;
+            Ocorrencia ocorrencia = removerOcorrenciaFila(&(simulador->filaAtendimento));
 
             printf("\n[%s]: Ocorrência retirada da fila de atendimento: %s\n",
                    simulador->tempoAtualSimulacao, ocorrencia.id);
 
-            switch(valor.ocorrencia.tipo)
+            switch(ocorrencia.tipo)
             {
                 case OCORRENCIA_BOMBEIRO:
 
-                    inserirFilaGravidade(&(simulador->filaBombeiro), valor);
+                    inserirFilaGravidade(&(simulador->filaBombeiro), ocorrencia);
 
                     printf("\n[%s]: Ocorrência adicionada à fila de atendimento de bombeiro: %s\n",
                            simulador->tempoAtualSimulacao,
-                           valor.ocorrencia.id);
+                           ocorrencia.id);
                     break;
 
                 case OCORRENCIA_HOSPITAL:
 
-                    inserirFilaGravidade(&(simulador->filaHospital), valor);
+                    inserirFilaGravidade(&(simulador->filaHospital), ocorrencia);
 
                     printf("\n[%s]: Ocorrência adicionada à fila de atendimento de hospital: %s\n",
                            simulador->tempoAtualSimulacao,
-                           valor.ocorrencia.id);
+                           ocorrencia.id);
 
                     break;
 
                 case OCORRENCIA_POLICIA:
 
-                    inserirFilaGravidade(&(simulador->filaPolicia), valor);
+                    inserirFilaGravidade(&(simulador->filaPolicia), ocorrencia);
 
                     printf("\n[%s]: Ocorrência adicionada à fila de atendimento de polícia: %s\n",
                            simulador->tempoAtualSimulacao,
-                           valor.ocorrencia.id);
+                           ocorrencia.id);
 
                     break;
 

@@ -3,6 +3,7 @@
 #include<stdbool.h>
 #include <locale.h>
 
+#include<sistema.h>
 #include "../simulacao.h"
 #include "../../constantes-sistema/constantes-sistema.h"
 #include "../../estruturas/tipos_abstratos/arvore_ABB/arvore_abb.h"

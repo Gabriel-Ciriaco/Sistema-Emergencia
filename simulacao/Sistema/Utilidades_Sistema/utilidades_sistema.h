@@ -21,6 +21,8 @@ Ocorrencia *buscarOcorrenciaPorID(ArvoreABB *raiz, char const *idOcorrencia);
 
 void relatorioOcorrencias(ArvoreABB *raiz);
 
-void listarOcorrenciasPorGravidade(No *raiz);
+void relatorioOcorrenciasTipo(ArvoreABB *raiz, TipoOcorrencia tipoOcorrencia);
+
+void listarOcorrenciasPorGravidade(NoAvl *raiz);
 
 #endif // UTILIDADES_SISTEMA_H

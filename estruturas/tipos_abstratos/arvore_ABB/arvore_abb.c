@@ -13,7 +13,7 @@ ArvoreABB *criarABB()
 }
 
 
-ArvoreABB *criarArvoreABBABB(Ocorrencia ocorrencia)
+ArvoreABB *criarArvoreABB(Ocorrencia ocorrencia)
 {
     ArvoreABB *ArvoreABBvoArvoreABB = (ArvoreABB*)malloc(1*sizeof(ArvoreABB));
 
@@ -33,7 +33,7 @@ ArvoreABB *inserirValorABB(ArvoreABB *raiz, Ocorrencia ocorrencia)
 {
     if(raiz == NULL)
     {
-        ArvoreABB *ArvoreABBvoArvoreABB = criarArvoreABBABB(ocorrencia);
+        ArvoreABB *ArvoreABBvoArvoreABB = criarArvoreABB(ocorrencia);
 
         if(ArvoreABBvoArvoreABB == NULL)
         {

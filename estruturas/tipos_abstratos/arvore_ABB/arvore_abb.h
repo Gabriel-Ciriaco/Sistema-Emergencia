@@ -12,7 +12,7 @@ typedef struct ArvoreABB
 
 ArvoreABB *criarABB();
 
-ArvoreABB *criarArvoreABBABB(Ocorrencia ocorrencia);
+ArvoreABB *criarArvoreABB(Ocorrencia ocorrencia);
 
 ArvoreABB *inserirValorABB(ArvoreABB *raiz, Ocorrencia ocorrencia);
 

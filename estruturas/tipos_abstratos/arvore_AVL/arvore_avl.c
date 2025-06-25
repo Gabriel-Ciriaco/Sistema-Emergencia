@@ -5,9 +5,17 @@
 #include<stdlib.h>
 #include<string.h>
 
-No *criarNoAVL(Ocorrencia ocorrencia)
+
+NoAvl * criarArvoreAvl()
 {
-    No *novoNo = (No*)malloc(1*sizeof(No));
+    NoAvl * raiz = NULL;
+
+    return raiz;
+}
+
+NoAvl *criarNoAVL(Ocorrencia ocorrencia)
+{
+    NoAvl *novoNo = (NoAvl*)malloc(1*sizeof(NoAvl));
 
     if(novoNo == NULL)
     {
@@ -22,14 +30,14 @@ No *criarNoAVL(Ocorrencia ocorrencia)
     return novoNo;
 }
 
-int alturaNo(No *no)
+int alturaNo(NoAvl *noAvl)
 {
-    if(no == NULL)
+    if(noAvl == NULL)
     {
         return -1;
     }
 
-    return no->altura;
+    return noAvl->altura;
 }
 
 int maxValor(int a, int b)
@@ -42,22 +50,22 @@ int maxValor(int a, int b)
     return b;
 }
 
-int fatorBalanceamento(No *no)
+int fatorBalanceamento(NoAvl *noAvl)
 {
-    if(no == NULL)
+    if(noAvl == NULL)
     {
         return 0;
     }
     else
     {
-        return (alturaNo(no->esq) - alturaNo(no->dir));
+        return (alturaNo(noAvl->esq) - alturaNo(noAvl->dir));
     }
 }
 
-No *rotacaoEsq(No *raiz)
+NoAvl *rotacaoEsq(NoAvl *raiz)
 {
-    No *y = raiz->dir;
-    No *f = y->esq;
+    NoAvl *y = raiz->dir;
+    NoAvl *f = y->esq;
 
     y->esq = raiz;
     raiz->dir = f;
@@ -68,10 +76,10 @@ No *rotacaoEsq(No *raiz)
     return y;
 }
 
-No *rotacaoDir(No *raiz)
+NoAvl *rotacaoDir(NoAvl *raiz)
 {
-    No *y = raiz->esq;
-    No *f = y->dir;
+    NoAvl *y = raiz->esq;
+    NoAvl *f = y->dir;
 
     y->dir = raiz;
     raiz->esq = f;
@@ -82,7 +90,7 @@ No *rotacaoDir(No *raiz)
     return y;
 }
 
-No *rotacaoDirEsq(No *raiz)
+NoAvl *rotacaoDirEsq(NoAvl *raiz)
 {
     raiz->dir = rotacaoDir(raiz->dir);
 
@@ -91,7 +99,7 @@ No *rotacaoDirEsq(No *raiz)
     return raiz;
 }
 
-No *rotacaoEsqDir(No *raiz)
+NoAvl *rotacaoEsqDir(NoAvl *raiz)
 {
     raiz->esq = rotacaoEsq(raiz->esq);
 
@@ -100,7 +108,7 @@ No *rotacaoEsqDir(No *raiz)
     return raiz;
 }
 
-No *balanceamentoAVL(No *raiz)
+NoAvl *balanceamentoAVL(NoAvl *raiz)
 {
     if(raiz == NULL)
     {
@@ -129,11 +137,11 @@ No *balanceamentoAVL(No *raiz)
     return raiz;
 }
 
-No *inserirValorAVL(No *raiz, Ocorrencia ocorrencia)
+NoAvl *inserirValorAVL(NoAvl *raiz, Ocorrencia ocorrencia)
 {
     if(raiz == NULL)
     {
-        No *novoNo = criarNoAVL(ocorrencia);
+        NoAvl *novoNo = criarNoAVL(ocorrencia);
 
         if(novoNo == NULL)
         {
@@ -148,7 +156,7 @@ No *inserirValorAVL(No *raiz, Ocorrencia ocorrencia)
         {
             raiz->esq = inserirValorAVL(raiz->esq, ocorrencia);
         }
-        else if(ocorrencia.gravidade > raiz->ocorrencia.gravidade)
+        else if(ocorrencia.gravidade >= raiz->ocorrencia.gravidade)
         {
             raiz->dir = inserirValorAVL(raiz->dir, ocorrencia);
         }
@@ -162,7 +170,7 @@ No *inserirValorAVL(No *raiz, Ocorrencia ocorrencia)
     return raiz;
 }
 
-No *buscarValorAVL(No *raiz, char const *idOcorrencia)
+NoAvl *buscarValorAVL(NoAvl *raiz, char const *idOcorrencia)
 {
     if(raiz == NULL)
     {
@@ -184,7 +192,7 @@ No *buscarValorAVL(No *raiz, char const *idOcorrencia)
     }
 }
 
-No *removerValorAVL(No *raiz, Ocorrencia ocorrencia)
+NoAvl *removerValorAVL(NoAvl *raiz, Ocorrencia ocorrencia)
 {
     if(raiz == NULL)
     {
@@ -202,7 +210,7 @@ No *removerValorAVL(No *raiz, Ocorrencia ocorrencia)
 
             if(raiz->esq != NULL && raiz->dir != NULL)
             {
-                No *aux = raiz->esq;
+                NoAvl *aux = raiz->esq;
 
                 while(aux->dir != NULL)
                 {
@@ -219,7 +227,7 @@ No *removerValorAVL(No *raiz, Ocorrencia ocorrencia)
             }
             else
             {
-                No *aux;
+                NoAvl *aux;
                 if(raiz->esq != NULL)
                 {
                     aux = raiz->esq;
@@ -252,7 +260,7 @@ No *removerValorAVL(No *raiz, Ocorrencia ocorrencia)
     }
 }
 
-void destruirAVL(No *raiz)
+void destruirAVL(NoAvl *raiz)
 {
     if(raiz != NULL)
     {

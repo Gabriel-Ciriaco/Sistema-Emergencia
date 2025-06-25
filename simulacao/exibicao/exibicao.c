@@ -2,9 +2,11 @@
 
 #include "../../estruturas/tipos_abstratos/pilha/pilha.h"
 
+#include <stdio.h>
 
 void exibirCidadao(Cidadao cidadao)
 {
+    printf("---------------------------");
     printf("\n\tDados da Pessoa\n");
     printf("\n\t  -ID: %s\n", cidadao.id);
     printf("\n\t  -Nome: %s\n", cidadao.nome);
@@ -14,6 +16,7 @@ void exibirCidadao(Cidadao cidadao)
 
 void exibirProfissional(Profissional profissional)
 {
+    printf("---------------------------");
     printf("\n\tDados do Profissional:\n");
 
     exibirCidadao(profissional.cidadao);
@@ -21,6 +24,7 @@ void exibirProfissional(Profissional profissional)
 
 void exibirOcorrencia(Ocorrencia ocorrencia)
 {
+    printf("---------------------------");
     printf("\n\tDados da Ocorrência\n");
 
     printf("\n\t  -ID: %s\n", ocorrencia.id);
@@ -110,5 +114,10 @@ void exibirTodosAtendimentos(TabelaHash * profissionais, int quantidadeProfissio
         }
 
         i++;
+    }
+
+    if (profissionaisMostrados == 0)
+    {
+        printf("\n** Não há profissionais cadastrados. **\n");
     }
 }

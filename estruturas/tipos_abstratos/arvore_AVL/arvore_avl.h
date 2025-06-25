@@ -3,39 +3,41 @@
 
 #include "../../ocorrencia/ocorrencia.h"
 
-typedef struct no
+typedef struct noAvl
 {
     Ocorrencia ocorrencia;
-    struct no *esq;
-    struct no *dir;
+    struct noAvl *esq;
+    struct noAvl *dir;
     int altura;
 
-}No;
+}NoAvl;
 
-No *criarNoAVL(Ocorrencia ocorrencia);
+NoAvl * criarArvoreAvl();
 
-int alturaNo(No *no);
+NoAvl *criarNoAVL(Ocorrencia ocorrencia);
+
+int alturaNoAvl(NoAvl *noAvl);
 
 int maxValor(int a, int b);
 
-int fatorBalanceamento(No *no);
+int fatorBalanceamento(NoAvl *noAvl);
 
-No *rotacaoEsq(No *raiz);
+NoAvl *rotacaoEsq(NoAvl *raiz);
 
-No *rotacaoDir(No *raiz);
+NoAvl *rotacaoDir(NoAvl *raiz);
 
-No *rotacaoDirEsq(No *raiz);
+NoAvl *rotacaoDirEsq(NoAvl *raiz);
 
-No *rotacaoEsqDir(No *raiz);
+NoAvl *rotacaoEsqDir(NoAvl *raiz);
 
-No *balanceamentoAVL(No *raiz);
+NoAvl *balanceamentoAVL(NoAvl *raiz);
 
-No *inserirValorAVL(No *raiz, Ocorrencia ocorrencia);
+NoAvl *inserirValorAVL(NoAvl *raiz, Ocorrencia ocorrencia);
 
-No *buscarValorAVL(No *raiz, char const *idOcorrencia);
+NoAvl *buscarValorAVL(NoAvl *raiz, char const *idOcorrencia);
 
-No *removerValorAVL(No *raiz, Ocorrencia ocorrencia);
+NoAvl *removerValorAVL(NoAvl *raiz, Ocorrencia ocorrencia);
 
-void destruirAVL(No *raiz);
+void destruirAVL(NoAvl *raiz);
 
 #endif // ARVORE_AVL_H_INCLUDED

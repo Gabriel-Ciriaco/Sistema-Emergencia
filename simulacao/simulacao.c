@@ -65,8 +65,10 @@ Simulador criarSimulador()
 
     novoSimulador.filaSamu = criarFilaPrioridade();
 
-    /*Inicialização da ABB*/
+    /*Inicialização das Árvores*/
     novoSimulador.ocorrenciasPorID = criarABB();
+
+    novoSimulador.ocorrenciasPorGravidade = criarArvoreAvl();
 
     return novoSimulador;
 }
@@ -119,6 +121,8 @@ bool rodarSimulacao(Simulador * simulador)
                 inserirValorPilha(&(profissionalTabela->historicoAtendimento), novaOcorrencia);
 
                 simulador->ocorrenciasPorID = inserirValorABB(simulador->ocorrenciasPorID, novaOcorrencia);
+
+                simulador->ocorrenciasPorGravidade = inserirValorAVL(simulador->ocorrenciasPorGravidade, novaOcorrencia);
 
                 printf("\n[%s]: Nova ocorrência: \n", simulador->tempoAtualSimulacao);
 
@@ -263,6 +267,7 @@ bool limparSimulacao(Simulador * simulador)
     limparFilaPrioridade(&(simulador->filaSamu));
 
     destruirABB(simulador->ocorrenciasPorID);
+    destruirAVL(simulador->ocorrenciasPorGravidade);
 
     return true;
 }

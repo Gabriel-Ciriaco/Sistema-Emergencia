@@ -6,12 +6,13 @@
 #include "../estruturas/tipos_abstratos/tabela_hash/tabela_hash.h"
 #include "../estruturas/tipos_abstratos/fila_prioridade/fila_prioridade.h"
 #include "../estruturas/tipos_abstratos/arvore_ABB/arvore_abb.h"
+#include "../estruturas/tipos_abstratos/arvore_AVL/arvore_avl.h"
 #include "../estruturas/tipos_abstratos/pilha/pilha.h"
 
 #include <stdbool.h>
 #include <time.h>
 
-#define MAX_TEMPO_SIMULACAO 100
+#define MAX_TEMPO_SIMULACAO 30
 
 #define TMP_CHEGADA_OCORRENCIA 10
 
@@ -106,6 +107,8 @@ typedef struct simulador
     FilaPrioridade filaPolicia;
 
     ArvoreABB *ocorrenciasPorID;
+
+    NoAvl * ocorrenciasPorGravidade;
 
 } Simulador;
 

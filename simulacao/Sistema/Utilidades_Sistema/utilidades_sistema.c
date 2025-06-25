@@ -70,7 +70,22 @@ void relatorioOcorrencias(ArvoreABB *raiz)
     }
 }
 
-void listarOcorrenciasPorGravidade(No *raiz)
+void relatorioOcorrenciasTipo(ArvoreABB *raiz, TipoOcorrencia tipoOcorrencia)
+{
+    if(raiz != NULL)
+    {
+        relatorioOcorrenciasTipo(raiz->esq, tipoOcorrencia);
+
+        if (raiz->ocorrencia.tipo == tipoOcorrencia)
+        {
+            exibirOcorrencia(raiz->ocorrencia);
+        }
+
+        relatorioOcorrenciasTipo(raiz->dir, tipoOcorrencia);
+    }
+}
+
+void listarOcorrenciasPorGravidade(NoAvl *raiz)
 {
     if (raiz != NULL)
     {
@@ -84,15 +99,14 @@ int rodarMenu()
 {
     int opcao;
 
-    printf("\n*** MENU PRINCIPAL ***\n");
+    printf("\n\n*** MENU PRINCIPAL ***\n\n");
     printf("1 - Rodar simulação\n");
     printf("2 - Configurar simulação\n");
     printf("---------------------------\n");
     printf("3 - Buscar ocorrência por ID\n");
     printf("4 - Listar todas as ocorrências\n");
-    printf("5 - Listar todas as ocorrências por gravidade\n");
-    printf("---------------------------\n");
-    printf("6 - Buscar cidadão por ID\n");
+    printf("5 - Listar todas as ocorrências por tipo\n");
+    printf("6 - Listar todas as ocorrências por gravidade\n");
     printf("---------------------------\n");
     printf("7 - Visualizar histórico de atendimentos de um profissional\n");
     printf("---------------------------\n");

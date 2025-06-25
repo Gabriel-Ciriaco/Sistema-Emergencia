@@ -1,6 +1,7 @@
 #include "pilha.h"
 
-#include<stdbool.h>
+#include <string.h>
+#include <stdbool.h>
 
 Pilha criarPilha()
 {

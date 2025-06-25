@@ -1,6 +1,8 @@
 #ifndef EXIBICAO_H
 #define EXIBICAO_H
 
+#include "../../estruturas/vetoriais/posicao.h"
+
 #include "../../estruturas/bairro/bairro.h"
 #include "../../estruturas/cidadao/cidadao.h"
 #include "../../estruturas/profissional/profissional.h"
@@ -9,6 +11,7 @@
 
 #include "../../estruturas/tipos_abstratos/tabela_hash/tabela_hash.h"
 
+void exibirPosicao(Posicao pos);
 
 void exibirCidadao(Cidadao cidadao);
 

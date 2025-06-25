@@ -3,6 +3,8 @@
 
 #include "../../constantes-sistema/constantes-sistema.h"
 
+#include "../../estruturas/vetoriais/posicao.h"
+
 #include "../../estruturas/tipos_abstratos/pilha/pilha.h"
 
 #include <stdio.h>
@@ -20,9 +22,7 @@ Bairro gerarBairro()
 
     sprintf(novoBairro.id, "BA%d", rand() % MAX_RAND_ID);
 
-    novoBairro.pos.x = rand() % MAX_RAND_POS;
-
-    novoBairro.pos.y = rand() % MAX_RAND_POS;
+    posicaoAleatoria(&novoBairro.pos);
 
     return novoBairro;
 }
@@ -84,6 +84,8 @@ Cidadao gerarCidadao()
     cpfAleatorio(novoCidadao.cpf);
 
     telefoneAleatorio(novoCidadao.telefoneEmergencia);
+
+    posicaoAleatoria(&novoCidadao.pos);
 
     return novoCidadao;
 
@@ -160,18 +162,9 @@ Bombeiro gerarBombeiro()
 
     sprintf(novoBombeiro.id, "BO%d", rand() % MAX_RAND_ID);
 
-    if(rand() % 2 == 1)
-    {
-        novoBombeiro.emAtendimento = true;
+    novoBombeiro.emAtendimento = (rand() % 2 == 1);
 
-    }else{
-
-        novoBombeiro.emAtendimento = false;
-    }
-
-    novoBombeiro.pos.x = rand() % MAX_RAND_POS;
-
-    novoBombeiro.pos.y = rand() % MAX_RAND_POS;
+    posicaoAleatoria(&novoBombeiro.pos);
 
     return novoBombeiro;
 }
@@ -189,9 +182,7 @@ Hospital gerarHospital(const char * nome)
 
     novoHospital.ocorrenciasAtivas = rand() % MAX_ATIVAS;
 
-    novoHospital.pos.x = rand() % MAX_RAND_POS;
-
-    novoHospital.pos.y = rand() % MAX_RAND_POS;
+    posicaoAleatoria(&novoHospital.pos);
 
     return novoHospital;
 
@@ -204,18 +195,9 @@ Policia gerarPolicia()
 
     sprintf(novaPolicia.id, "PO%d", rand() % MAX_RAND_ID);
 
-    if(rand() % 2 == 1)
-    {
-        novaPolicia.emAtendimento = true;
+    novaPolicia.emAtendimento = (rand() % 2 == 1);
 
-    }else{
-
-        novaPolicia.emAtendimento = false;
-
-    }
-
-    novaPolicia.pos.x = rand() % MAX_RAND_POS;
-    novaPolicia.pos.y = rand() % MAX_RAND_POS;
+    posicaoAleatoria(&novaPolicia.pos);
 
     return novaPolicia;
 }
@@ -230,9 +212,7 @@ SAMU gerarSAMU()
 
     novoSamu.ambulanciasAtivas = rand() % MAX_ATIVAS;
 
-    novoSamu.pos.x = rand() % MAX_RAND_POS;
-
-    novoSamu.pos.y = rand() % MAX_RAND_POS;
+    posicaoAleatoria(&novoSamu.pos);
 
     return novoSamu;
 }

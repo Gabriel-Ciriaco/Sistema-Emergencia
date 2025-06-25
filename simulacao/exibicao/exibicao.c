@@ -4,6 +4,20 @@
 
 #include <stdio.h>
 
+void exibirPosicao(Posicao pos)
+{
+    printf("\n\t  -Posição: ");
+
+    char hemisferio_latitude = (pos.y >= 0) ? 'N' : 'S';
+    char hemisferio_longitude = (pos.x >= 0) ? 'E' : 'W';
+
+    printf("%.6fº%c %.6fº%c\n",
+           (pos.y >= 0 ? pos.y : -pos.y),
+           hemisferio_latitude,
+           (pos.x >=0 ? pos.x : -pos.x),
+           hemisferio_longitude);
+}
+
 void exibirCidadao(Cidadao cidadao)
 {
     printf("---------------------------");
@@ -12,6 +26,7 @@ void exibirCidadao(Cidadao cidadao)
     printf("\n\t  -Nome: %s\n", cidadao.nome);
     printf("\n\t  -CPF: %s\n", cidadao.cpf);
     printf("\n\t  -Telefone de Emergência: %s\n", cidadao.telefoneEmergencia);
+    exibirPosicao(cidadao.pos);
 }
 
 void exibirProfissional(Profissional profissional)
@@ -28,6 +43,23 @@ void exibirOcorrencia(Ocorrencia ocorrencia)
     printf("\n\tDados da Ocorrência\n");
 
     printf("\n\t  -ID: %s\n", ocorrencia.id);
+
+    printf("\n\t  -Tipo da Ocorrência: ");
+
+    switch(ocorrencia.tipo)
+    {
+        case OCORRENCIA_BOMBEIRO:
+            printf("Ocorrência do Corpo de Bombeiro\n");
+            break;
+
+        case OCORRENCIA_HOSPITAL:
+            printf("Ocorrência hospitalar\n");
+            break;
+
+        case OCORRENCIA_POLICIA:
+            printf("Ocorrência policial\n");
+            break;
+    }
 
     printf("\n\t  -Gravidade: ");
 

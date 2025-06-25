@@ -55,7 +55,7 @@ Profissional * resgatarCadastroProfissional(TabelaHash * profissionais, const ch
 
     if (!valor) return NULL;
 
-    return &(valor->profissional.cidadao);
+    return &(valor->profissional);
 }
 
 Profissional * resgatarProfissionalAleatorio(TabelaHash * profissionais, int quantidadeProfissionais)
@@ -89,7 +89,7 @@ Profissional * resgatarProfissionalAleatorio(TabelaHash * profissionais, int qua
         }
     }
 
-    return &(no->valor.profissional.cidadao);
+    return &(no->valor.profissional);
 }
 
 void cadastrarBombeiro(TabelaHash * bombeiros, Bombeiro bombeiro)

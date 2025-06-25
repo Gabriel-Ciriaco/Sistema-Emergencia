@@ -1,7 +1,8 @@
 #include "lista_cruzada.h"
 
-#include<string.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 #include "../../../constantes-sistema/constantes-sistema.h"
 

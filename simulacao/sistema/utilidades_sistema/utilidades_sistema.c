@@ -55,7 +55,11 @@ bool configurarSimulacao(Simulador *simulador)
 
 Ocorrencia *buscarOcorrenciaPorID(ArvoreABB *raiz, char const *idOcorrencia)
 {
-    Ocorrencia *ocorrenciaEncontrada = buscarValorABB(raiz, idOcorrencia);
+    ArvoreABB * valor = buscarValorABB(raiz, idOcorrencia);
+
+    if (!valor) return NULL;
+
+    Ocorrencia *ocorrenciaEncontrada = &(valor->ocorrencia);
 
     return ocorrenciaEncontrada;
 }

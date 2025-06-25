@@ -8,6 +8,8 @@
 
 #define MAX_RAND_ID 1000
 
+#define MIN_RAND_POS -100
+
 #define MAX_RAND_POS 100
 
 #define MAX_DISPONIVEIS 20

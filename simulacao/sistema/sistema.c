@@ -57,6 +57,21 @@ void executarSistema()
                 break;
 
             case 3:
+
+                if(limparSimulacao(&simulador))
+                {
+                    simulador = criarSimulador();
+
+                    printf("\n** Simulação reiniciada com sucesso. **\n");
+                }
+                else
+                {
+                    printf("\n** Não foi possível reiniciar a simulação. **\n");
+                }
+                break;
+
+
+            case 4:
             {
 
                 char id[MAX_ID];
@@ -84,7 +99,7 @@ void executarSistema()
                 break;
             }
 
-            case 4:
+            case 5:
 
                 if (simulador.ocorrenciasPorID)
                 {
@@ -98,7 +113,7 @@ void executarSistema()
                 }
                 break;
 
-            case 5:
+            case 6:
 
                 if (simulador.ocorrenciasPorID)
                 {
@@ -124,7 +139,7 @@ void executarSistema()
 
                 break;
 
-            case 6:
+            case 7:
 
                 if(simulador.ocorrenciasPorGravidade)
                 {
@@ -139,7 +154,7 @@ void executarSistema()
                 break;
 
 
-            case 7:
+            case 8:
             {
 
                 char idProfissional[MAX_ID];
@@ -166,7 +181,7 @@ void executarSistema()
                 break;
             }
 
-            case 8:
+            case 9:
                 exibirTodosAtendimentos(&simulador.profissionais, simulador.quantidadeProfissionais);
                 break;
 

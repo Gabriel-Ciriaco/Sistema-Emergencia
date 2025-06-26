@@ -239,6 +239,18 @@ bool rodarSimulacao(Simulador * simulador)
             Bairro * bairroProximo = procurarBairroProximo(&(simulador->bairroUnidade),
                                                            &(simulador->bairros),
                                                            ocorrencia);
+            if (!bairroProximo)
+            {
+                printf("\n[%s]: Não há nenhuma unidade de serviço disponível para tratar a ocorrência \"%s\".\n",
+                       simulador->tempoAtualSimulacao,
+                       ocorrencia.id);
+
+                simulador->tempoSimulacao++;
+
+                sleep(1);
+
+                continue;
+            }
 
             printf("\n[%s]: Ocorrência \"%s\" enviada ao bairro mais próximo: \n",
                    simulador->tempoAtualSimulacao,

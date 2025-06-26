@@ -38,9 +38,9 @@ void mudarPos(Posicao * pos, float newX, float newY)
     pos->y = newY;
 }
 
-float distanciaPos(Posicao * pos1, Posicao * pos2)
+float distanciaPos(Posicao pos1, Posicao pos2)
 {
-    return sqrtf(pow(pos2->x - pos1->x, 2) + pow(pos2->y - pos1->y, 2));
+    return sqrt(pow(pos2.x - pos1.x, 2) + pow(pos2.y - pos1.y, 2));
 }
 
 void posicaoAleatoria(Posicao * pos)

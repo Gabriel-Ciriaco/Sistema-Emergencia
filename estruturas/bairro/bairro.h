@@ -6,7 +6,7 @@
 #include "../vetoriais/posicao.h"
 
 
-typedef struct{
+typedef struct bairro{
 
     char id[MAX_ID];
     char nome[MAX_NOME];

@@ -5,6 +5,16 @@
 #include "./atendimento/atendimento.h"
 #include "./exibicao/exibicao.h"
 
+#include "../estruturas/bairro/bairro.h"
+#include "../estruturas/cidadao/cidadao.h"
+#include "../estruturas/profissional/profissional.h"
+#include "../estruturas/ocorrencia/ocorrencia.h"
+
+#include "../estruturas/unidades-de-servico/bombeiro/bombeiro.h"
+#include "../estruturas/unidades-de-servico/hospital/hospital.h"
+#include "../estruturas/unidades-de-servico/policia/policia.h"
+#include "../estruturas/unidades-de-servico/unidadade-de-servico.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -52,7 +62,15 @@ Simulador criarSimulador()
 
     novoSimulador.profissionais = criarTabelaHash(HASH_PROFISSIONAL);
 
-    novoSimulador.unidadesServico = criarTabelaHash(HASH_UNIDADE_SERVICO);
+    novoSimulador.bombeiros = criarTabelaHash(HASH_UNIDADE_SERVICO);
+
+    novoSimulador.hospitais = criarTabelaHash(HASH_UNIDADE_SERVICO);
+
+    novoSimulador.policias = criarTabelaHash(HASH_UNIDADE_SERVICO);
+
+    /* Inicialização da Lista Cruzada  */
+
+    novoSimulador.bairroUnidade = criarListaCruzada();
 
     /*Inicialização das filas*/
     novoSimulador.filaAtendimento = criarFilaPrioridade();
@@ -73,6 +91,83 @@ Simulador criarSimulador()
     return novoSimulador;
 }
 
+bool criarEntidades(Simulador * simulador)
+{
+    // Cria profissionais
+    for (int i = 0; i < simulador->quantidadeProfissionais; i++)
+    {
+        Profissional novoProfissional = gerarProfissional();
+
+        cadastrarProfissional(&(simulador->profissionais), novoProfissional);
+    }
+
+    // Cria bairros.
+    Bairro  * bairrosCriados[simulador->quantidadeBairros];
+
+    for (int i = 0; i < simulador->quantidadeBairros; i++)
+    {
+        Bairro novoBairro = gerarBairro();
+
+        cadastrarBairro(&(simulador->bairros), novoBairro);
+
+        bairrosCriados[i] = resgatarCadastroBairro(&(simulador->bairros), novoBairro.id);
+    }
+
+    /*
+        Cria unidades de serviço aleatórias
+        e as associa aos primeiros bairros.
+    */
+    for (int i = 0; i < simulador->quantidadeBombeiros; i++)
+    {
+        Bombeiro novoBombeiro = gerarBombeiro();
+
+        cadastrarBombeiro(&(simulador->bombeiros), novoBombeiro);
+
+        // Associamos a unidade de serviço ao bairro.
+        if (i < simulador->quantidadeBairros)
+        {
+            inserirValorListaCruzada(&(simulador->bairroUnidade),
+                                     TUS_BOMBEIRO,
+                                     bairrosCriados[i]->id,
+                                     novoBombeiro.id);
+        }
+    }
+
+    for (int i = 0; i < simulador->quantidadeHospitais; i++)
+    {
+        Hospital novoHospital = gerarHospital();
+
+        cadastrarHospital(&(simulador->hospitais), novoHospital);
+
+        // Associamos a unidade de serviço ao bairro.
+        if (i < simulador->quantidadeBairros)
+        {
+            inserirValorListaCruzada(&(simulador->bairroUnidade),
+                                     TUS_HOSPITAL,
+                                     bairrosCriados[i]->id,
+                                     novoHospital.id);
+        }
+    }
+
+    for (int i = 0; i < simulador->quantidadePolicias; i++)
+    {
+        Policia novaPolicia = gerarPolicia();
+
+        cadastrarPolicia(&(simulador->policias), novaPolicia);
+
+        // Associamos a unidade de serviço ao bairro.
+        if (i < simulador->quantidadeBairros)
+        {
+            inserirValorListaCruzada(&(simulador->bairroUnidade),
+                                     TUS_POLICIA,
+                                     bairrosCriados[i]->id,
+                                     novaPolicia.id);
+        }
+    }
+
+    return true;
+}
+
 bool rodarSimulacao(Simulador * simulador)
 {
     calcularTempoAtual(simulador->inicioSimulacao);
@@ -82,12 +177,9 @@ bool rodarSimulacao(Simulador * simulador)
     */
     srand(time(NULL));
 
-    for (int i = 0; i < simulador->quantidadeProfissionais; i++)
-    {
-        Profissional novoProfissional = gerarProfissional();
+    bool entidadesCriadas = criarEntidades(simulador);
 
-        cadastrarProfissional(&(simulador->profissionais), novoProfissional);
-    }
+    if (!entidadesCriadas) return false;
 
     while (simulador->tempoSimulacao < simulador->tempoSimulacaoMaximo)
     {
@@ -143,6 +235,16 @@ bool rodarSimulacao(Simulador * simulador)
 
             printf("\n[%s]: Ocorrência retirada da fila de atendimento: %s\n",
                    simulador->tempoAtualSimulacao, ocorrencia.id);
+
+            Bairro * bairroProximo = procurarBairroProximo(&(simulador->bairroUnidade),
+                                                           &(simulador->bairros),
+                                                           ocorrencia);
+
+            printf("\n[%s]: Ocorrência \"%s\" enviada ao bairro mais próximo: \n",
+                   simulador->tempoAtualSimulacao,
+                   ocorrencia.id);
+
+            exibirBairro(*bairroProximo);
 
             switch(ocorrencia.tipo)
             {
@@ -225,6 +327,8 @@ bool alterarQuantidadeEntidade(Simulador * simulador,
     switch (entidade)
     {
         case ENTIDADE_BAIRRO:
+            if (novaQuantidade > MAX_BAIRROS) return false;
+
             simulador->quantidadeBairros = novaQuantidade;
             return true;
 
@@ -233,18 +337,26 @@ bool alterarQuantidadeEntidade(Simulador * simulador,
             return true;
 
         case ENTIDADE_BOMBEIRO:
+            if (novaQuantidade > MAX_BAIRROS) return false;
+
             simulador->quantidadeBombeiros = novaQuantidade;
             return true;
 
         case ENTIDADE_HOSPITAL:
+            if (novaQuantidade > MAX_BAIRROS) return false;
+
             simulador->quantidadeHospitais = novaQuantidade;
             return true;
 
         case ENTIDADE_POLICIA:
+            if (novaQuantidade > MAX_BAIRROS) return false;
+
             simulador->quantidadePolicias = novaQuantidade;
             return true;
 
         case ENTIDADE_SAMU:
+            if (novaQuantidade > MAX_BAIRROS) return false;
+
             simulador->quantidadeSamus = novaQuantidade;
             return true;
 
@@ -258,7 +370,11 @@ bool limparSimulacao(Simulador * simulador)
     limparTabela(&(simulador->bairros));
     limparTabela(&(simulador->cidadaos));
     limparTabela(&(simulador->profissionais));
-    limparTabela(&(simulador->unidadesServico));
+    limparTabela(&(simulador->bombeiros));
+    limparTabela(&(simulador->hospitais));
+    limparTabela(&(simulador->policias));
+
+    destruirListaCruzada(&(simulador->bairroUnidade));
 
     limparFilaPrioridade(&(simulador->filaAtendimento));
     limparFilaPrioridade(&(simulador->filaBombeiro));

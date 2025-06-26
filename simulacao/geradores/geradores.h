@@ -44,7 +44,7 @@ Ocorrencia gerarOcorrencia(char * horaOcorrencia,
 
 Bombeiro gerarBombeiro();
 
-Hospital gerarHospital(const char * nome);
+Hospital gerarHospital();
 
 Policia gerarPolicia();
 

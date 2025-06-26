@@ -18,7 +18,7 @@ void addPos(Posicao * pos, Posicao * direcao);
 
 void mudarPos(Posicao * pos, float newX, float newY);
 
-float distanciaPos(Posicao * pos1, Posicao * pos2);
+float distanciaPos(Posicao pos1, Posicao pos2);
 
 void posicaoAleatoria(Posicao * pos);
 

@@ -3,19 +3,42 @@
 #include "../../estruturas/tipos_abstratos/pilha/pilha.h"
 
 #include <stdio.h>
+#include <math.h>
+
+
+void floatParaCoordenadas(float coord, char positiva, char negativa)
+{
+    char direcao = (coord >= 0) ? positiva : negativa;
+
+    coord = fabs(coord);
+
+    int graus = (int) coord;
+
+    float min_float = (coord - graus) * 60.0;
+    int minutos = (int) min_float;
+
+    int segundos = (int) ((min_float - (float) minutos) * 60.0);
+
+    printf("%d°%02d'%02d\"%c", graus, minutos, segundos, direcao);
+}
 
 void exibirPosicao(Posicao pos)
 {
     printf("\n\t  -Posição: ");
 
-    char hemisferio_latitude = (pos.y >= 0) ? 'N' : 'S';
-    char hemisferio_longitude = (pos.x >= 0) ? 'E' : 'W';
+    floatParaCoordenadas(pos.y, 'N', 'S');
+    printf(" ");
+    floatParaCoordenadas(pos.x, 'E', 'W');
+    printf("\n");
+}
 
-    printf("%.6fº%c %.6fº%c\n",
-           (pos.y >= 0 ? pos.y : -pos.y),
-           hemisferio_latitude,
-           (pos.x >=0 ? pos.x : -pos.x),
-           hemisferio_longitude);
+void exibirBairro(Bairro bairro)
+{
+    printf("---------------------------");
+    printf("\n\tDados do Bairro\n");
+    printf("\n\t  -ID: %s\n", bairro.id);
+    printf("\n\t  -Nome: %s\n", bairro.nome);
+    exibirPosicao(bairro.pos);
 }
 
 void exibirCidadao(Cidadao cidadao)

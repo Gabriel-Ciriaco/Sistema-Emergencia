@@ -212,7 +212,18 @@ void removerValorListaCruzada(ListaCruzada *listaC, TipoUnidadeServico tipo, con
     free(remover);
 }
 
-NoListaC *buscarValorListaCruzada(ListaCruzada *listaC, TipoUnidadeServico tipo, const char *idBairro)
+NoListaC *buscarValorListaCruzada(ListaCruzada *listaC, TipoUnidadeServico tipo)
+{
+    int coluna = tipo;
+
+    NoListaC *atual = listaC->vetorCol[coluna];
+
+    return atual;
+}
+
+NoListaC *buscarBairroListaCruzada(ListaCruzada *listaC,
+                                   TipoUnidadeServico tipo,
+                                   const char *idBairro)
 {
     int coluna = tipo;
 
@@ -221,11 +232,6 @@ NoListaC *buscarValorListaCruzada(ListaCruzada *listaC, TipoUnidadeServico tipo,
     while(atual != NULL && strcmp(atual->idBairro, idBairro) != 0)
     {
         atual = atual->proxCol;
-    }
-
-    if(atual == NULL)
-    {
-        return NULL;
     }
 
     return atual;

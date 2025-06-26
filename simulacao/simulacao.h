@@ -4,6 +4,7 @@
 #include "./controle-de-tempo/controle-de-tempo.h"
 
 #include "../estruturas/tipos_abstratos/tabela_hash/tabela_hash.h"
+#include "../estruturas/tipos_abstratos/lista_cruzada/lista_cruzada.h"
 #include "../estruturas/tipos_abstratos/fila_prioridade/fila_prioridade.h"
 #include "../estruturas/tipos_abstratos/arvore_ABB/arvore_abb.h"
 #include "../estruturas/tipos_abstratos/arvore_AVL/arvore_avl.h"
@@ -18,7 +19,7 @@
 
 #define TMP_MAXIMO_OCORRENCIA 20
 
-#define QTD_BAIRROS 10
+#define QTD_BAIRROS 20
 
 #define QTD_CIDADAOS 10
 
@@ -83,18 +84,13 @@ typedef struct simulador
 
     TabelaHash profissionais;
 
-    /*
-    TO-DO: Talvez, criar hash para cada uma.
-
     TabelaHash bombeiros;
 
     TabelaHash hospitais;
 
-    TabelaHash policia;
+    TabelaHash policias;
 
-    TabelaHash samus;*/
-
-    TabelaHash unidadesServico;
+    ListaCruzada bairroUnidade;
 
     FilaPrioridade filaAtendimento;
 
@@ -114,6 +110,8 @@ typedef struct simulador
 
 
 Simulador criarSimulador();
+
+bool criarEntidades(Simulador * simulador);
 
 bool rodarSimulacao(Simulador * simulador);
 

@@ -7,7 +7,7 @@
 
 #define NUM_COLUNAS 4
 
-typedef enum{
+typedef enum tipoUnidadeServico{
 
     TUS_HOSPITAL,
     TUS_BOMBEIRO,
@@ -46,7 +46,11 @@ void inserirValorListaCruzada(ListaCruzada *listaC, TipoUnidadeServico tipo, con
 
 void removerValorListaCruzada(ListaCruzada *listaC, TipoUnidadeServico tipo, const char *idBairro);
 
-NoListaC *buscarValorListaCruzada(ListaCruzada *listaC, TipoUnidadeServico tipo, const char *idBairro);
+NoListaC *buscarValorListaCruzada(ListaCruzada *listaC, TipoUnidadeServico tipo);
+
+NoListaC *buscarBairroListaCruzada(ListaCruzada *listaC,
+                                   TipoUnidadeServico tipo,
+                                   const char *idBairro);
 
 void destruirListaCruzada(ListaCruzada *listaC);
 

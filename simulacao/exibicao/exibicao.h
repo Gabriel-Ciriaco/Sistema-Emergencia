@@ -13,6 +13,8 @@
 
 void exibirPosicao(Posicao pos);
 
+void exibirBairro(Bairro bairro);
+
 void exibirCidadao(Cidadao cidadao);
 
 void exibirProfissional(Profissional profissional);

@@ -14,6 +14,7 @@
 #include <ctype.h>
 #include <time.h>
 
+
 Bairro gerarBairro()
 {
     Bairro novoBairro;
@@ -170,11 +171,9 @@ Bombeiro gerarBombeiro()
 }
 
 
-Hospital gerarHospital(const char * nome)
+Hospital gerarHospital()
 {
     Hospital novoHospital;
-
-    strcpy(novoHospital.nome, nome);
 
     sprintf(novoHospital.id, "HO%d", rand() % MAX_RAND_ID);
 

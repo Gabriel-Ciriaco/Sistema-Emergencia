@@ -1,5 +1,5 @@
-#ifndef UNIDADADE-DE-SERVICO_H
-#define UNIDADADE-DE-SERVICO_H
+#ifndef UNIDADADE_DE_SERVICO_H
+#define UNIDADADE_DE_SERVICO_H
 
 #include "bombeiro/bombeiro.h"
 #include "hospital/hospital.h"
@@ -15,4 +15,4 @@ typedef union unidadeServico
 } UnidadeServico;
 
 
-#endif // UNIDADADE-DE-SERVICO_H
+#endif // UNIDADADE_DE_SERVICO_H

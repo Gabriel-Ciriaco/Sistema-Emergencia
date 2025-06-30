@@ -28,6 +28,9 @@ Bairro * procurarBairroProximo(ListaCruzada * bairrosUnidades,
         case OCORRENCIA_POLICIA:
             tipoUni = TUS_POLICIA;
             break;
+
+        default:
+            return NULL;
     }
 
     // Retorna o bairro com a unidade de serviço desejada.
